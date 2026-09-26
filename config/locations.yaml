@@ -1,0 +1,102 @@
+# config/locations.yaml — sites of interest
+#
+# Coordinates marked `approx: true` are starting values from PLAN.md Part B §2.
+# They MUST be replaced in P1 with real lat/lon parsed from the CPCB station
+# list PDF (WQMN_list.pdf). Do not trust an approx coordinate for any distance
+# or routing decision until confirmed.
+
+crs: EPSG:4326  # WGS84 lat/lon in degrees
+
+# --- CPCB river monitoring stations (real stations; coords to confirm in P1) ---
+river_stations:
+  - site_id: cpcb_pandu
+    name: "Brahmaputra at Pandu"
+    lat: 26.176
+    lon: 91.684
+    role: city_reach
+    approx: true
+  - site_id: cpcb_chandrapur
+    name: "Brahmaputra at Chandrapur"
+    lat: 26.248
+    lon: 91.918
+    role: upstream_east_of_city
+    approx: true
+  - site_id: cpcb_bharalu
+    name: "Bharalu river, Guwahati"
+    lat: 26.168
+    lon: 91.765
+    role: urban_tributary
+    approx: true
+  - site_id: cpcb_kacharighat
+    name: "Brahmaputra near intake, Kacharighat"
+    lat: null   # from PDF in P1
+    lon: null   # from PDF in P1
+    role: city_intake_reach
+    approx: true
+  - site_id: cpcb_dibrugarh
+    name: "Brahmaputra at Dibrugarh"
+    lat: 27.510
+    lon: 94.953
+    role: far_upstream
+    approx: true
+
+# --- Our user's intake (confirm exact location with WTP chemist) ---
+intake:
+  - site_id: iitg_intake
+    name: "IITG raw-water intake (barge)"
+    lat: 26.19   # confirm with WTP chemist
+    lon: 91.69   # confirm with WTP chemist
+    role: campus_intake
+    approx: true
+    note: "Barge intake in low-water months (Dec-Mar). Location to be confirmed."
+
+# --- Upstream catchment points for rainfall features (Open-Meteo, P2) ---
+rain_points:
+  - site_id: rain_pasighat
+    name: "Pasighat (upper catchment)"
+    lat: 28.066
+    lon: 95.326
+    approx: true
+  - site_id: rain_dibrugarh
+    name: "Dibrugarh"
+    lat: 27.472
+    lon: 94.912
+    approx: true
+  - site_id: rain_tezpur
+    name: "Tezpur"
+    lat: 26.633
+    lon: 92.800
+    approx: true
+  - site_id: rain_guwahati
+    name: "Guwahati"
+    lat: 26.144
+    lon: 91.736
+    approx: true
+
+# --- GloFAS discharge points (P2); nudge onto channel if no discharge returned ---
+discharge_points:
+  - site_id: flow_dibrugarh
+    name: "Brahmaputra discharge @ Dibrugarh"
+    lat: 27.472
+    lon: 94.912
+    approx: true
+  - site_id: flow_tezpur
+    name: "Brahmaputra discharge @ Tezpur area"
+    lat: 26.633
+    lon: 92.800
+    approx: true
+  - site_id: flow_chandrapur
+    name: "Brahmaputra discharge @ Chandrapur"
+    lat: 26.248
+    lon: 91.918
+    approx: true
+  - site_id: flow_pandu
+    name: "Brahmaputra discharge @ Pandu/Guwahati"
+    lat: 26.176
+    lon: 91.684
+    approx: true
+  - site_id: flow_iitg_intake
+    name: "Brahmaputra discharge @ IITG intake"
+    lat: 26.19
+    lon: 91.69
+    approx: true

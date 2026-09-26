@@ -1,0 +1,120 @@
+# config/params.yaml — synthetic + model parameters (PLAN.md Part B §5)
+#
+# Every parameter carries a `basis` string: a citation or "team estimate".
+# "Team estimate" values are shown in the app as "assumed" and are meant to be
+# replaced by the WTP chemist's calibrated values. All synthetic generation uses
+# the fixed `seed` below so output is byte-reproducible (Part A rule 3, Part B §6).
+
+seed: 20250926   # global fixed seed for all synthetic generators
+
+generator_version: "1.0.0"   # bump when a formula/parameter changes; stored in source_ref
+
+# --- Chlorine decay (models/twin/chlorine.py) ---
+chlorine:
+  k_b20:                    # bulk decay at 20 C, day^-1
+    min: 0.5
+    max: 1.5
+    median: 0.9
+    basis: "First-order decay is the standard model; simulation studies commonly use ~0.85-1.0 day^-1"
+  theta:                    # temperature correction; k_b(T)=k_b20*theta^(T-20)
+    value: 1.096
+    basis: "Literature: a 10 C rise can raise k_b ~2.5x -> theta = 2.5^0.1"
+  k_w_eff:                  # effective pipe wall decay, day^-1, added in pipes only
+    min: 0.05
+    max: 0.5
+    basis: "Wall reactions add to bulk decay in pipes (EPANET convention); range is a team estimate"
+
+# --- Water temperature model (modelled from Open-Meteo air temp, clipped to NWMP envelope) ---
+water_temperature:
+  air_to_water_lag_days: 3
+  smoothing_window_days: 7
+  basis: "Derived from Open-Meteo air temp (lagged smoothing), clipped to NWMP seasonal envelope -> provenance=modelled"
+
+# --- Chlorine demand vs turbidity (team estimate; calibratable) ---
+chlorine_demand:
+  d0:                       # baseline demand, mg/L
+    min: 0.3
+    max: 0.8
+  a:                        # slope on normalised NDTI, mg/L
+    min: 0.2
+    max: 1.0
+  epsilon_sd: 0.1           # N(0, 0.1) mg/L noise
+  formula: "D = d0 + a*norm(NDTI) + epsilon"
+  basis: "Team estimate, clearly flagged; calibratable by chemist"
+
+# --- Dose solver bounds (models/dose/solver.py) ---
+dose:
+  min_mg_l: 0.5
+  max_mg_l: 4.0
+  step_mg_l: 0.05
+  target_residual_mg_l: 0.2   # BIS IS 10500 minimum free chlorine at tap
+  basis: "Operational bound (team estimate); target residual is BIS IS 10500 standard"
+
+# --- Network travel/residence times (pipeline/synthetic/network.py) ---
+network:
+  pipe_travel_time_h:         # WTP -> hostel, depends on distance
+    min: 0.25
+    max: 3.0
+    basis: "Team estimate"
+  tank_residence_time_h:      # overhead tank residence
+    min: 6
+    max: 24
+    basis: "Team estimate"
+
+# --- Field test-kit noise (pipeline/synthetic/tap_readings.py) ---
+test_kit:
+  dpd_abs_error_mg_l: 0.05        # +/- max(0.05 mg/L, 10%)
+  dpd_rel_error: 0.10
+  resolution_mg_l: 0.1
+  missing_frac_min: 0.05          # 5-10% missing readings
+  missing_frac_max: 0.10
+  transcription_error_frac: 0.005 # 0.5% transcription errors
+  basis: "Typical field-kit behaviour, team estimate"
+
+# --- Tank anomaly injection (labelled, evaluation only) ---
+tank_anomaly:
+  k_multiplier_min: 2.0
+  k_multiplier_max: 4.0
+  duration_days_min: 3
+  duration_days_max: 10
+  basis: "Team estimate; stored as labelled anomaly_injected events for evaluation only"
+
+# --- Complaints generation (LLM, provenance=synthetic) ---
+complaints:
+  count_min: 60
+  count_max: 150
+  languages: [en, hi, as]
+  category_shares_source: kriti25_survey
+  basis: "LLM-generated with category shares from KRITI '25 survey priors; provenance=synthetic"
+
+# --- Incident ETA water velocity (models/eta, agents/incident_agent.py) ---
+incident_eta:
+  water_velocity_m_s_min: 0.8
+  water_velocity_m_s_max: 2.5
+  basis: "Team estimate; output as a RANGE, never a single number. NOTE: pollutant velocity != flood-wave celerity"
+
+# --- Escalation triggers (models/escalation/triggers.py, P9A) ---
+triggers:
+  campus:
+    low_residual_mg_l: 0.2
+    low_residual_consecutive_runs: 2
+    complaint_cluster_min: 3
+    complaint_cluster_window_h: 48
+  public:
+    virtual_sensor_p90_percentile: 95   # p90 above historical 95th pct
+    user_report_cluster_min: 3
+  basis: "Team estimate; each fired case stores the exact numbers that triggered it"
+
+# --- Priority / SLA (also mirrored in routing_rules.yaml) ---
+priority:
+  formula: "severity * population_exposed * confidence"
+  basis: "Team estimate"
+
+# --- Campus resilience (Part B §7; assumed until WTP confirms) ---
+campus_resilience:
+  raw_clear_storage_hours_min: 4
+  raw_clear_storage_hours_max: 24
+  min_safe_storage_reserve_frac: 0.25
+  emergency_litres_per_person_per_day_min: 3
+  emergency_litres_per_person_per_day_max: 5
+  basis: "Team estimate - confirm with WTP"

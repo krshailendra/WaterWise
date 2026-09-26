@@ -1,0 +1,50 @@
+# --- Secrets (Part A rule 7) ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Node / Expo (app/) ---
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+*.log
+
+# --- Large raw downloads in bronze (keep the .json sidecars for provenance) ---
+# Bronze is immutable but heavy binaries (>50 MB and satellite/geo blobs) are not
+# committed; they are reproducible from the recorded URL + retrieved_at + sha256.
+data/bronze/**/*.pdf
+data/bronze/**/*.tif
+data/bronze/**/*.tiff
+data/bronze/**/*.jp2
+data/bronze/**/*.nc
+data/bronze/**/*.zip
+data/bronze/**/*.geojson
+data/bronze/**/*.parquet
+data/bronze/**/*.csv
+data/bronze/**/*.xlsx
+
+# --- Generated data (reproducible from bronze + code + seed) ---
+data/silver/**/*.parquet
+data/gold/**/*.parquet
+data/release/*.zip
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# pytest local temp
+.pytest_tmp/

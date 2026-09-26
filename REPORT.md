@@ -84,3 +84,19 @@ This is our build log. Every step of the project is recorded here, in order, inc
 ---
 
 <!-- Claude Code: append new entries below this line using the PLAN.md Part A §8 template. -->
+
+## Entry 004 — P0 project skeleton  (2026-09-26 22:55 IST)
+**Prompt/phase:** P0
+**Goal:** Stand up the repository skeleton, config, provenance-enforcing writer and a passing test harness.
+**What changed:**
+- `CLAUDE.md` (rules + templates that persist across sessions), first git commit (PLAN/REPORT/CLAUDE).
+- Full tree per Part A §4: `config/`, `data/{bronze,silver,gold,release}`, `pipeline/{ingest,synthetic,validate}`, `models/*`, `agents/`, `api/routes/`, `app/assets/`, `notebooks/`, `tests/`, `scripts/`, `docs/figures/`.
+- `pyproject.toml` (core deps + `ingest/geo/ml/agents/api/dev` extras), `.env.example` (ANTHROPIC_API_KEY, WW_MODEL_MAIN=claude-sonnet-5, WW_MODEL_FAST=claude-haiku-4-5-20251001, WW_API_BASE, WW_SEND_EMAIL=false), `.gitignore`, `Makefile` (ingest/synth/validate/train/daily/api/test), `README.md`, `pipeline/run_daily.py` CLI stub.
+- Config: `locations.yaml` (Part B §2; approx coords flagged for P1 replacement), `campus.yaml` (12 hostels H01–H12 pop 300–900, WTP+reservoir, distances, every value `assumed: true`), `params.yaml` (all Part B §5 synthetic params + basis strings + fixed seed 20250926), plus `authorities.yaml` and `routing_rules.yaml` created verbatim from Part D.
+- `pipeline/schemas.py`: pydantic models for sites, observations, events, daily_briefing, network_edges (Part B §3) + controlled vocab enums; single `write_table()` writer that refuses any row missing provenance/source_id/source_ref.
+- `tests/test_writer_provenance.py`.
+**Data:** No data ingested yet (P0 is scaffolding). 0 rows all provenance classes.
+**Decisions & why:** Split heavy geo/ML libs into optional extras so P0 installs cleanly on Windows/py3.13 and each phase pulls only what it needs. Enforced provenance in one choke-point (`write_table`) rather than per-table so rule 2 can't be bypassed. `.gitignore` excludes bronze binaries (reproducible from URL+sha256 sidecars) and generated silver/gold parquet.
+**Validation:** `pytest -q` → 6 passed (writer rejects missing provenance / blank source_id / missing source_ref; accepts complete dict + pydantic instances; error names the bad row index). All 5 config YAMLs parse (9 dummy authorities, all_dummy=true; 12 hostels). Env: Python 3.13.3, Node v22.16.
+**Honest limits found:** pytest's default Windows temp root was permission-denied; pinned `--basetemp=.pytest_tmp`. CPCB station coords in locations.yaml are still approximations (Kacharighat lat/lon null) until parsed from WQMN_list.pdf in P1. Heavy extras (geo/ml/agents/api) not yet installed — deferred to their phases.
+**Next:** P1 — CPCB NWMP river + station-list ingestion with the ingestion agent.

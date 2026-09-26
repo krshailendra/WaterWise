@@ -1,0 +1,95 @@
+# config/authorities.yaml — DUMMY DIRECTORY (demo only)
+#
+# Every entry is fictional. Emails use the reserved `.invalid` top-level domain
+# (RFC 2606), which can never be delivered, so nothing can reach a real office
+# even if WW_SEND_EMAIL is switched on by mistake.
+# To go live later: replace an entry with an officially published contact route,
+# set dummy: false, and log the change + its source in REPORT.md.
+
+global:
+  all_dummy: true
+  send_email_default: false
+
+authorities:
+  # ---------- CAMPUS (IITG geofence) ----------
+  - id: campus_wtp_chemist
+    name: "Demo — Campus WTP Chemist"
+    audience: campus
+    role: wtp_operator
+    jurisdiction: {geofence: iitg_campus}
+    channels: {inbox: true, email: "wtp-chemist@campus.demo.invalid"}
+    handles: [low_residual, raw_water_spike, dose_review, incident_upstream]
+    dummy: true
+
+  - id: campus_estates
+    name: "Demo — Campus Estates / Plumbing Section"
+    audience: campus
+    role: estates
+    jurisdiction: {geofence: iitg_campus}
+    channels: {inbox: true, email: "estates@campus.demo.invalid"}
+    handles: [tank_anomaly, pipeline_fault, reroute, emergency_supply]
+    dummy: true
+
+  - id: campus_hostel_warden
+    name: "Demo — Hostel Warden ({hostel_id})"   # one virtual entry per hostel
+    audience: campus
+    role: warden
+    jurisdiction: {geofence: iitg_campus, per_site: hostel}
+    channels: {inbox: true, email: "warden-{hostel_id}@campus.demo.invalid"}
+    handles: [complaint_cluster, purifier_fault, emergency_supply]
+    dummy: true
+
+  - id: campus_health_centre
+    name: "Demo — Campus Health Centre"
+    audience: campus
+    role: health
+    jurisdiction: {geofence: iitg_campus}
+    channels: {inbox: true, email: "health@campus.demo.invalid"}
+    handles: [illness_cluster]
+    dummy: true
+
+  # ---------- PUBLIC ----------
+  - id: city_water_utility
+    name: "Demo — City Water Utility"
+    audience: public
+    role: urban_water_supplier
+    jurisdiction: {area_type: urban, boundary: city_limits_guwahati}
+    channels: {inbox: true, email: "quality@cityutility.demo.invalid"}
+    handles: [piped_supply_contamination, low_residual, complaint_cluster]
+    dummy: true
+
+  - id: rural_water_division
+    name: "Demo — Rural Water Supply Division ({district})"
+    audience: public
+    role: rural_water_supplier
+    jurisdiction: {area_type: rural, per: district}
+    channels: {inbox: true, email: "division-{district_slug}@ruralwater.demo.invalid"}
+    handles: [piped_supply_contamination, community_source_contamination, complaint_cluster]
+    dummy: true
+
+  - id: pollution_regional_office
+    name: "Demo — Pollution Control Regional Office ({river_reach})"
+    audience: public
+    role: pollution_regulator
+    jurisdiction: {per: river_reach}
+    channels: {inbox: true, email: "ro-{reach_slug}@pollution.demo.invalid"}
+    handles: [industrial_discharge, oil_spill, incident_upstream]
+    dummy: true
+
+  - id: district_health_surveillance
+    name: "Demo — District Disease Surveillance ({district})"
+    audience: public
+    role: health
+    jurisdiction: {per: district}
+    channels: {inbox: true, email: "surveillance-{district_slug}@health.demo.invalid"}
+    handles: [illness_cluster]
+    dummy: true
+
+  - id: state_catch_all
+    name: "Demo — State Water Quality Desk (catch-all)"
+    audience: public
+    role: fallback
+    jurisdiction: {per: state}
+    channels: {inbox: true, email: "desk@statewater.demo.invalid"}
+    handles: ["*"]
+    dummy: true

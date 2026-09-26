@@ -1,0 +1,60 @@
+# config/campus.yaml — IITG campus distribution network (PLACEHOLDER)
+#
+# EVERY value here is a team placeholder, marked `assumed: true`. Replace hostel
+# names, populations, distances, storage and isolation options with the WTP
+# chemist's real figures when available (log the change in REPORT.md).
+#
+# Topology used by pipeline/synthetic/network.py (P6):
+#   intake -> wtp -> reservoir -> hostel tanks -> coolers/RO units
+# Distances are approximate pipe lengths in metres (assumed).
+
+assumed: true   # global flag: nothing in this file is confirmed by the WTP yet
+
+nodes:
+  - id: iitg_intake
+    kind: intake
+    name: "IITG raw-water intake (barge)"
+    assumed: true
+  - id: wtp
+    kind: wtp
+    name: "Campus Water Treatment Plant"
+    assumed: true
+  - id: reservoir
+    kind: reservoir
+    name: "Campus clear-water reservoir"
+    storage_hours_demand: 12     # hours of campus demand held (assumed; range 4-24)
+    min_reserve_frac: 0.25       # keep 25% reserve (assumed)
+    assumed: true
+
+# Campus-wide demand assumption (assumed; range 0.8-2.0 ML/day per Part B §7)
+campus_demand_ml_per_day: 1.4
+assumed_demand: true
+
+# 12 placeholder hostels H01..H12, population 300-900 (assumed)
+hostels:
+  - {id: H01, name: "Hostel H01 (Manas)",       population: 620, dist_from_reservoir_m: 350,  can_isolate: true,  alt_feed_from: reservoir, assumed: true}
+  - {id: H02, name: "Hostel H02 (Dihing)",      population: 540, dist_from_reservoir_m: 480,  can_isolate: true,  alt_feed_from: H01,       assumed: true}
+  - {id: H03, name: "Hostel H03 (Kapili)",      population: 700, dist_from_reservoir_m: 610,  can_isolate: true,  alt_feed_from: reservoir, assumed: true}
+  - {id: H04, name: "Hostel H04 (Siang)",       population: 830, dist_from_reservoir_m: 790,  can_isolate: false, alt_feed_from: null,      assumed: true}
+  - {id: H05, name: "Hostel H05 (Subansiri)",   population: 450, dist_from_reservoir_m: 920,  can_isolate: true,  alt_feed_from: H03,       assumed: true}
+  - {id: H06, name: "Hostel H06 (Dhansiri)",    population: 900, dist_from_reservoir_m: 1050, can_isolate: true,  alt_feed_from: reservoir, assumed: true}
+  - {id: H07, name: "Hostel H07 (Lohit)",       population: 610, dist_from_reservoir_m: 1180, can_isolate: false, alt_feed_from: null,      assumed: true}
+  - {id: H08, name: "Hostel H08 (Barak)",       population: 720, dist_from_reservoir_m: 1320, can_isolate: true,  alt_feed_from: H06,       assumed: true}
+  - {id: H09, name: "Hostel H09 (Umiam)",       population: 300, dist_from_reservoir_m: 1460, can_isolate: true,  alt_feed_from: H08,       assumed: true}
+  - {id: H10, name: "Hostel H10 (Brahmaputra)", population: 880, dist_from_reservoir_m: 1610, can_isolate: false, alt_feed_from: null,      assumed: true}
+  - {id: H11, name: "Hostel H11 (Disang)",      population: 560, dist_from_reservoir_m: 1770, can_isolate: true,  alt_feed_from: H10,       assumed: true}
+  - {id: H12, name: "Hostel H12 (Kameng)",      population: 640, dist_from_reservoir_m: 1950, can_isolate: true,  alt_feed_from: reservoir, assumed: true}
+
+# Point-of-use devices downstream of hostel tanks (one cooler + one RO per hostel
+# is generated in P6; listed here only as the pattern, all assumed).
+point_of_use:
+  per_hostel:
+    - {kind: cooler, dist_from_tank_m: 30, assumed: true}
+    - {kind: ro_unit, dist_from_tank_m: 30, assumed: true}
+
+# Emergency supply planning (assumed; Part B §7)
+emergency_supply:
+  litres_per_person_per_day_min: 3
+  litres_per_person_per_day_max: 5
+  distribution_points: ["mess", "hostel_lobby"]
+  assumed: true

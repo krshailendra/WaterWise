@@ -1,0 +1,65 @@
+[project]
+name = "waterwise"
+version = "0.1.0"
+description = "WaterWise — source-to-tap water intelligence for the IITG WTP chemist"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "KrShaily" }]
+
+# Core dependencies (Part A §5). Heavy geo/ML libraries are grouped as optional
+# extras so P0 stays installable everywhere; each phase installs what it needs.
+dependencies = [
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "duckdb>=0.10",
+    "pydantic>=2.5",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+ingest = [
+    "pdfplumber>=0.11",
+    "lxml>=5.0",          # pandas.read_html backend
+    "html5lib>=1.1",
+]
+geo = [
+    "pystac-client>=0.7",
+    "planetary-computer>=1.0",
+    "rioxarray>=0.15",
+    "rasterio>=1.3",
+    "shapely>=2.0",
+    "geopandas>=0.14",
+]
+ml = [
+    "lightgbm>=4.0",
+    "scikit-learn>=1.3",
+]
+agents = [
+    "langgraph>=0.2",
+    "anthropic>=0.40",
+]
+api = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["pipeline", "models", "agents", "api"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+# Default system temp root is not writable in this Windows environment; keep
+# pytest's tmp_path under the project instead.
+addopts = "--basetemp=.pytest_tmp"

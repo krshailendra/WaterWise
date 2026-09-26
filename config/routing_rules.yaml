@@ -1,0 +1,58 @@
+# config/routing_rules.yaml — who gets a case, decided from geography + case type
+#
+# The resolver (models/routing/resolver.py) turns a location into a Jurisdiction:
+#   {geofence, area_type (urban|rural|campus), city, district, state,
+#    pincode, post_office, postal_division, river_reach, confidence, method}
+# Rules below are matched top to bottom; the MOST SPECIFIC matching rule wins
+# (more matched keys = more specific). Ties → notify all tied authorities.
+
+rules:
+  # Campus: anything inside the IITG geofence stays on campus first
+  - match: {geofence: iitg_campus, case_type: [low_residual, raw_water_spike, dose_review]}
+    notify: [campus_wtp_chemist]
+    cc: [campus_estates]
+  - match: {geofence: iitg_campus, case_type: [tank_anomaly, pipeline_fault]}
+    notify: [campus_estates]
+    cc: [campus_wtp_chemist, campus_hostel_warden]
+  - match: {geofence: iitg_campus, case_type: [complaint_cluster, purifier_fault]}
+    notify: [campus_hostel_warden]
+    cc: [campus_estates]
+  - match: {geofence: iitg_campus, case_type: [illness_cluster]}
+    notify: [campus_health_centre]
+    cc: [campus_wtp_chemist]
+
+  # Public, piped supply: depends on urban vs rural
+  - match: {area_type: urban, water_source: piped, case_type: [piped_supply_contamination, low_residual, complaint_cluster]}
+    notify: [city_water_utility]
+  - match: {area_type: rural, water_source: [piped, community_source], case_type: [piped_supply_contamination, community_source_contamination, complaint_cluster]}
+    notify: [rural_water_division]
+
+  # Private sources (own borewell / RO / tanker): utility isn't responsible,
+  # so we advise the household and log area-level patterns for the division
+  - match: {water_source: [own_borewell, private_tanker, home_ro]}
+    notify: []
+    household_guidance: private_source
+    aggregate_to: rural_water_division   # only if ≥3 reports in same PIN/ward in 7 days
+
+  # River incidents route by river reach, plus every intake downstream
+  - match: {case_type: [industrial_discharge, oil_spill, incident_upstream]}
+    notify: [pollution_regional_office]
+    cc_downstream_intakes: true          # campus_wtp_chemist, city_water_utility if intake is downstream within ETA window
+
+  # Health signals always also go to surveillance
+  - match: {case_type: [illness_cluster]}
+    notify: [district_health_surveillance]
+
+  # Nothing matched or low-confidence location → human-routed catch-all
+  - match: {}
+    notify: [state_catch_all]
+
+confidence:
+  auto_route_min: 0.8          # below this, ask user to confirm area, or send to catch-all
+  boundary_buffer_m: 250       # point within 250 m of a boundary → notify both sides
+
+escalation_ladder:             # if SLA missed, move up one step
+  campus: [campus_wtp_chemist, campus_estates, state_catch_all]
+  public: [city_water_utility, rural_water_division, state_catch_all]
+
+sla_hours: {high: 6, medium: 24, low: 72}
