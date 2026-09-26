@@ -26,7 +26,18 @@ def main() -> None:
 
     print(f"[run_daily] stage={args.stage} date={args.date} "
           f"incremental={args.incremental}")
-    print("[run_daily] not yet implemented for this stage — added in later phases (P1-P8).")
+
+    if args.stage in ("ingest", "daily"):
+        # incremental hydro-met fetch (Open-Meteo + GloFAS) — safe to run often
+        from pipeline.ingest import openmeteo
+        s = openmeteo.run(incremental=True)
+        print(f"[run_daily] openmeteo: new_rows={s.get('rows')} "
+              f"status={s.get('status', 'ok')}")
+        from models.eta import flow_lag
+        flow_lag.compute(save_plot=False)
+        print("[run_daily] flow lags recomputed")
+    else:
+        print("[run_daily] stage not yet wired — added in later phases (P3-P8).")
 
 
 if __name__ == "__main__":
