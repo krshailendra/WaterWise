@@ -7,38 +7,58 @@
 
 crs: EPSG:4326  # WGS84 lat/lon in degrees
 
-# --- CPCB river monitoring stations (real stations; coords to confirm in P1) ---
+# --- CPCB river monitoring stations (real coords from WQMN_list.pdf, P1) ---
+# cpcb_station_code links each site to the CPCB NWMP station list.
 river_stations:
   - site_id: cpcb_pandu
-    name: "Brahmaputra at Pandu"
+    name: "BRAHAMPUTRA AT PANDU, ASSAM"
+    cpcb_station_code: "1031"
     lat: 26.176
-    lon: 91.684
+    lon: 91.68375
     role: city_reach
-    approx: true
+    approx: false
   - site_id: cpcb_chandrapur
-    name: "Brahmaputra at Chandrapur"
-    lat: 26.248
-    lon: 91.918
+    name: "BRAHMAPUTRA RIVER AT CHANDRAPUR, GUWAHATI, ASSAM"
+    cpcb_station_code: "2064"
+    lat: 26.24776
+    lon: 91.918205
     role: upstream_east_of_city
-    approx: true
+    approx: false
   - site_id: cpcb_bharalu
-    name: "Bharalu river, Guwahati"
-    lat: 26.168
-    lon: 91.765
+    name: "BHARALU RIVER AT GUWAHATI, ASSAM"
+    cpcb_station_code: "1528"
+    lat: 26.167661
+    lon: 91.765289
     role: urban_tributary
-    approx: true
+    approx: false
   - site_id: cpcb_kacharighat
-    name: "Brahmaputra near intake, Kacharighat"
-    lat: null   # from PDF in P1
-    lon: null   # from PDF in P1
+    name: "BRAHMPUTRA RIVER NEAR WATER INTAKE POINT AT KACHARIGHAT"
+    cpcb_station_code: "2069"
+    lat: 26.190372
+    lon: 91.745589
     role: city_intake_reach
-    approx: true
+    approx: false
   - site_id: cpcb_dibrugarh
-    name: "Brahmaputra at Dibrugarh"
-    lat: 27.510
-    lon: 94.953
+    name: "BRAHAMPUTRA AT DIBRUGARH, ASSAM"
+    cpcb_station_code: "1030"
+    lat: 27.510417
+    lon: 94.953333
     role: far_upstream
-    approx: true
+    approx: false
+  - site_id: cpcb_dhubri
+    name: "BRAHMAPUTRA RIVER AT DHUBRI, ASSAM"
+    cpcb_station_code: "2066"
+    lat: 26.015519
+    lon: 89.993294
+    role: downstream_west_of_city
+    approx: false
+  - site_id: cpcb_bogibeel
+    name: "BRAHAMPUTRA RIVER AT BOGIBEEL BRIDGE, DIBRUGARH"
+    cpcb_station_code: "3781"
+    lat: 27.412578
+    lon: 94.757007
+    role: far_upstream
+    approx: false
 
 # --- Our user's intake (confirm exact location with WTP chemist) ---
 intake:

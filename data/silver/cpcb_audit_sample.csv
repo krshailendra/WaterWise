@@ -1,0 +1,21 @@
+site_id,station_code,parameter,value,unit,quality_flag,source_ref
+cpcb_3777,3777,fecal_coliform_mpn_100ml_max,1100.0,MPN/100mL,ok,"https://cpcb.nic.in/wqm/2023/WQuality_River-Data-2023.pdf | p39 | station 3777 'RIVER DORIKA NEAR MSW DUMPING SITE, SIVA' | yearly max"
+cpcb_1423,1423,bod_mg_l_min,2.0,mg/L,ok,"https://cpcb.nic.in/wqm/2018/WQuality_River-Data-2018.pdf | p44 | station 1423 'BORAK AT PANCHAGRAM , ASSAM' | yearly min"
+cpcb_2233,2233,conductivity_umho_cm_min,46.0,umho/cm,ok,"https://cpcb.nic.in/wqm/2016/Water_Quality_data_of_River_2016.pdf | p28 | station 2233 'BOGINADI NEAR BRIDGE NH-52, LAKHIMPUR' | yearly min"
+cpcb_2235,2235,water_temp_c_min,16.0,degC,ok,"https://cpcb.nic.in/wqm/2016/Water_Quality_data_of_River_2016.pdf | p30 | station 2235 'PANCHNAI AT NH-52 CROSSING, ORANG' | yearly min"
+cpcb_pandu,1031,water_temp_c_min,20.0,degC,ok,"https://cpcb.nic.in/wqm/2019/WQuality_River-Data-2019.pdf | p33 | station 1031 'BRAHAMPUTRA AT PANDU,' | yearly min"
+cpcb_3776,3776,fecal_strep_mpn_100ml_min,270.0,MPN/100mL,ok,https://cpcb.nic.in/wqm/2022/WQuality_River-Data-2022.pdf | p63 | station 3776 'RIVER DIKHOW AT NAGINI MORA (INTER-STATE' | yearly min
+cpcb_kacharighat,2069,do_mg_l_min,6.2,mg/L,ok,https://cpcb.nic.in/wqm/2016/Water_Quality_data_of_River_2016.pdf | p26 | station 2069 'BRAHMPUTRA NEAR WATER INTAKE POINT AT KA' | yearly min
+cpcb_dibrugarh,1030,ph_min,7.0,pH,ok,https://cpcb.nic.in/wqm/2021/WQuality_River-Data-2021.pdf | p57 | station 1030 'RIVER BRAHAMPUTRA AT DIBRUGARH' | yearly min
+cpcb_4342,4342,nitrate_mg_l_min,0.6,mg/L,ok,https://cpcb.nic.in/wqm/2021/WQuality_River-Data-2021.pdf | p61 | station 4342 'RIVER BARALIA (NEAR CHATPUJA GHAT) RANGI' | yearly min
+cpcb_dibrugarh,1030,total_coliform_mpn_100ml_max,2000.0,MPN/100mL,ok,"https://cpcb.nic.in/wqm/2022/WQuality_River-Data-2022.pdf | p60 | station 1030 'RIVER BRAHMAPUTRA AT DIBRUGARH, ASSAM' | yearly max"
+cpcb_3759,3759,fecal_strep_mpn_100ml_min,,MPN/100mL,suspect,"https://cpcb.nic.in/wqm/2020/WQuality_River-Data-2020.pdf | p31 | station 3759 'DIKRONG RIVER NEAR BRIDGE AT NH-52, BAND' | yearly min"
+cpcb_4005,4005,bod_mg_l_max,2.2,mg/L,ok,https://cpcb.nic.in/wqm/2019/WQuality_River-Data-2019.pdf | p35 | station 4005 'DISANG RIVER AT NH CROSSING' | yearly max
+cpcb_kacharighat,2069,fecal_strep_mpn_100ml_min,,MPN/100mL,suspect,https://cpcb.nic.in/wqm/2019/WQuality_River-Data-2019.pdf | p33 | station 2069 'BRAHMPUTRA RIVER NEAR WATER INTAKE POINT' | yearly min
+cpcb_2232,2232,do_mg_l_min,3.7,mg/L,ok,"https://cpcb.nic.in/wqm/2023/WQuality_River-Data-2023.pdf | p42 | station 2232 'RIVER KOHORA AT N.H. CROSSING, KOHORA, A' | yearly min"
+cpcb_1422,1422,bod_mg_l_min,2.0,mg/L,ok,"https://cpcb.nic.in/wqm/2023/WQuality_River-Data-2023.pdf | p37 | station 1422 'RIVER BURHIDIHING AT MARGHERITA, ASSAM' | yearly min"
+cpcb_kacharighat,2069,fecal_strep_mpn_100ml_max,490.0,MPN/100mL,ok,https://cpcb.nic.in/wqm/2023/WQuality_River-Data-2023.pdf | p36 | station 2069 'RIVER BRAHMPUTRA NEAR WATER INTAKE POINT' | yearly max
+cpcb_4331,4331,ph_min,6.8,pH,ok,https://cpcb.nic.in/wqm/2021/WQuality_River-Data-2021.pdf | p60 | station 4331 'RIVER DHATESHWARI D/S OF HAILAKANDI' | yearly min
+cpcb_dhubri,2066,ph_min,6.6,pH,ok,"https://cpcb.nic.in/wqm/2018/WQuality_River-Data-2018.pdf | p41 | station 2066 'BRAHMAPUTRA RIVER AT DHUBRI, ASSAM' | yearly min"
+cpcb_1526,1526,do_mg_l_min,7.2,mg/L,ok,https://cpcb.nic.in/wqm/2021/WQuality_River-Data-2021.pdf | p57 | station 1526 'RIVER BRAHMPUTRA RIVER AT DHENUKHAPAHAR' | yearly min
+cpcb_1258,1258,bod_mg_l_min,3.8,mg/L,ok,"https://cpcb.nic.in/wqm/2018/WQuality_River-Data-2018.pdf | p44 | station 1258 'JHANJI AT N.H. CROSSING JORHAT, ASSAM' | yearly min"
