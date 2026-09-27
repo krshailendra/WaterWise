@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>WaterWise</title>
+<style>
+  :root{
+    --bg:#0e1620; --panel:#16212e; --panel2:#1d2b3a; --ink:#eaf2fb; --mut:#93a7bd;
+    --line:#26384a; --accent:#39a0ff;
+    --ok:#2fbf71; --marg:#f2a72e; --low:#ef4d5a; --src:#4a90d9;
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f4f7fb;--panel:#fff;--panel2:#eef3f9;--ink:#10202f;--mut:#5b6b7c;--line:#dbe4ee;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+  header{padding:16px 16px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  h1{margin:0;font-size:19px;letter-spacing:.2px}
+  h1 small{color:var(--mut);font-weight:400;font-size:12px;display:block;margin-top:2px}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .tabs{display:flex;gap:6px;padding:10px 16px 0;max-width:820px;margin:0 auto;flex-wrap:wrap}
+  .tab{padding:8px 14px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--mut);cursor:pointer;font-weight:600;font-size:13px}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+  .card h2{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut)}
+  .big{font-size:54px;font-weight:800;line-height:1}
+  .unit{font-size:18px;color:var(--mut);font-weight:600}
+  .band{color:var(--mut);font-size:13px;margin-top:6px}
+  .pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.3px}
+  .b-syn{background:rgba(242,167,46,.16);color:var(--marg);border:1px solid rgba(242,167,46,.4)}
+  .b-mod{background:rgba(57,160,255,.16);color:var(--accent);border:1px solid rgba(57,160,255,.4)}
+  .b-obs{background:rgba(47,191,113,.16);color:var(--ok);border:1px solid rgba(47,191,113,.4)}
+  .risk{display:inline-block;padding:5px 12px;border-radius:8px;font-weight:800;text-transform:uppercase;font-size:13px}
+  .risk.high{background:rgba(239,77,90,.18);color:var(--low)}
+  .risk.elevated{background:rgba(242,167,46,.18);color:var(--marg)}
+  .risk.normal{background:rgba(47,191,113,.18);color:var(--ok)}
+  .kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .kv:last-child{border-bottom:0}
+  .kv .k{color:var(--mut)}
+  .kv .v{font-weight:700;text-align:right}
+  select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;font-weight:600}
+  .why{background:var(--panel2);border-radius:10px;padding:12px;color:var(--ink);font-size:14px}
+  .muted{color:var(--mut);font-size:12.5px}
+  .node{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .node:last-child{border-bottom:0}
+  .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto}
+  .dot.ok{background:var(--ok)} .dot.marginal{background:var(--marg)} .dot.low{background:var(--low)}
+  .dot.source{background:var(--src)} .dot.unknown{background:var(--mut)}
+  .node .nm{font-weight:700;min-width:64px}
+  .node .bar{flex:1;height:8px;border-radius:6px;background:var(--panel2);overflow:hidden;position:relative}
+  .node .fill{height:100%;border-radius:6px}
+  .node .val{min-width:96px;text-align:right;font-variant-numeric:tabular-nums;color:var(--mut);font-size:13px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;color:var(--mut);font-size:12px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .banner{border-radius:10px;padding:10px 12px;font-size:13.5px;font-weight:600;margin-bottom:10px}
+  .banner.verify{background:rgba(242,167,46,.14);border:1px solid rgba(242,167,46,.4);color:var(--marg)}
+  footer{max-width:820px;margin:8px auto 40px;padding:0 16px;color:var(--mut);font-size:12px}
+  .hidden{display:none}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap" style="padding:0">
+    <h1>WaterWise <small>source-to-tap water intelligence · IIT Guwahati WTP</small></h1>
+  </div>
+</header>
+<div class="tabs" id="tabs">
+  <div class="tab active" data-t="today">Today</div>
+  <div class="tab" data-t="network">Network</div>
+  <div class="tab" data-t="replay">Replay</div>
+  <div class="tab" data-t="area">My area</div>
+</div>
+<div class="wrap">
+  <div class="row" style="align-items:center;justify-content:space-between">
+    <div class="muted" id="offline">● offline demo data (bundled snapshot)</div>
+    <div><label class="muted" for="date">Date&nbsp;</label>
+      <select id="date"></select></div>
+  </div>
+
+  <!-- TODAY -->
+  <section id="today">
+    <div id="verifyBanner"></div>
+    <div class="card">
+      <h2>Recommended chlorine dose <span class="pill b-mod">modelled · simulated network</span></h2>
+      <div class="big" id="dose">—<span class="unit"> mg/L</span></div>
+      <div class="band" id="doseBand"></div>
+      <div class="row" style="margin-top:10px;align-items:center">
+        <span>Raw-water risk:</span> <span class="risk" id="risk">—</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Why</h2>
+      <div class="why" id="why"></div>
+    </div>
+    <div class="row">
+      <div class="card" style="flex:1;min-width:230px">
+        <h2>Worst tap</h2>
+        <div class="kv"><span class="k">Site</span><span class="v" id="worstId">—</span></div>
+        <div class="kv"><span class="k">p10 residual</span><span class="v" id="worstP10">—</span></div>
+        <div class="kv"><span class="k">BIS minimum</span><span class="v">0.20 mg/L</span></div>
+      </div>
+      <div class="card" style="flex:1;min-width:230px">
+        <h2>Test next <span class="pill b-mod">value-of-information</span></h2>
+        <div class="why" id="testNext" style="font-size:13px"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Confidence &amp; inputs</h2>
+      <div class="kv"><span class="k">River turbidity NDTI (p50)</span><span class="v"><span id="ndti">—</span> <span class="pill b-mod">modelled</span></span></div>
+      <div class="kv"><span class="k">Water temperature (est.)</span><span class="v"><span id="temp">—</span> °C <span class="pill b-mod">modelled</span></span></div>
+      <div class="kv"><span class="k">Chlorine demand (est.)</span><span class="v"><span id="demand">—</span> mg/L <span class="pill b-syn">assumed</span></span></div>
+      <div class="kv"><span class="k">Active alerts</span><span class="v" id="alerts">—</span></div>
+    </div>
+  </section>
+
+  <!-- NETWORK -->
+  <section id="network" class="hidden">
+    <div class="card">
+      <h2>Source → tap network <span class="pill b-syn">synthetic</span></h2>
+      <div class="muted">River → intake → WTP → reservoir → hostel tanks. Coloured by p10 free-chlorine residual.</div>
+      <div class="legend">
+        <span><i class="dot source"></i>source</span>
+        <span><i class="dot ok"></i>≥0.20 mg/L</span>
+        <span><i class="dot marginal"></i>0.10–0.20</span>
+        <span><i class="dot low"></i>&lt;0.10 (under verification)</span>
+      </div>
+      <div id="nodes" style="margin-top:8px"></div>
+    </div>
+  </section>
+
+  <!-- REPLAY -->
+  <section id="replay" class="hidden">
+    <div class="card">
+      <h2>Replay a historical day</h2>
+      <div class="muted">Pick a date above; every screen re-renders for that day from the bundled real-data snapshot.</div>
+      <div id="replayList" style="margin-top:10px"></div>
+    </div>
+  </section>
+
+  <!-- MY AREA -->
+  <section id="area" class="hidden">
+    <div class="card">
+      <h2>My area <span class="pill b-obs">public observed · CPCB</span></h2>
+      <div class="muted" id="areaLoc"></div>
+      <div class="why" id="areaSummary" style="margin-top:10px"></div>
+      <div id="areaStations" style="margin-top:10px"></div>
+      <div class="banner verify" id="areaCaveat" style="margin-top:12px"></div>
+    </div>
+  </section>
+</div>
+<footer id="prov"></footer>
+
+<script src="snapshot.js"></script>
+<script>
+(function(){
+  var S = window.WATERWISE_SNAPSHOT;
+  if(!S){document.body.innerHTML='<div class="wrap">snapshot.js not found — run scripts/build_snapshot.py</div>';return;}
+  var dateSel = document.getElementById('date');
+  S.dates.forEach(function(d){var o=document.createElement('option');o.value=d;o.textContent=d;dateSel.appendChild(o);});
+  dateSel.value = S.default_date || S.dates[0];
+
+  function fmt(x,dp){return (x===null||x===undefined)?'—':Number(x).toFixed(dp===undefined?2:dp);}
+
+  function renderToday(b){
+    document.getElementById('dose').innerHTML = fmt(b.recommended_dose_mg_l,2)+'<span class="unit"> mg/L</span>';
+    var band = 'target p10 residual ≥ '+b.target_residual_mg_l+' mg/L at the worst tap';
+    if(!b.dose_feasible){band = '⚠ even max dose cannot secure the farthest tank — see Why';}
+    document.getElementById('doseBand').textContent = band;
+    var r=document.getElementById('risk'); r.textContent=b.risk; r.className='risk '+b.risk;
+    document.getElementById('why').textContent = b.explanation;
+    document.getElementById('worstId').textContent = b.worst_tap.id;
+    document.getElementById('worstP10').textContent = fmt(b.worst_tap.p10,3)+' mg/L';
+    document.getElementById('testNext').textContent = b.test_next.reason || ('Test '+b.test_next.id);
+    document.getElementById('ndti').textContent = fmt(b.ndti.p50,3)+' ('+fmt(b.ndti.p10,3)+'–'+fmt(b.ndti.p90,3)+')';
+    document.getElementById('temp').textContent = fmt(b.water_temp_c,1);
+    document.getElementById('demand').textContent = fmt(b.chlorine_demand_mg_l,2);
+    document.getElementById('alerts').textContent = b.active_alerts;
+    var vb=document.getElementById('verifyBanner');
+    if(b.risk==='high'){vb.innerHTML='<div class="banner verify">Under verification — model raises a suspicion at '+b.worst_tap.id+'. Not declared unsafe; an authority must confirm.</div>';}
+    else{vb.innerHTML='';}
+  }
+
+  function renderNetwork(b){
+    var host=document.getElementById('nodes'); host.innerHTML='';
+    b.network.forEach(function(n){
+      var p10 = n.p10;
+      var pct = p10===null?100:Math.max(4,Math.min(100, (p10/0.6)*100));
+      var color = n.status==='ok'?'var(--ok)':n.status==='marginal'?'var(--marg)':n.status==='low'?'var(--low)':n.status==='source'?'var(--src)':'var(--mut)';
+      var val = n.id==='wtp'?'source':(fmt(p10,3)+' mg/L p10');
+      var pop = n.population?(' · '+n.population+' ppl'):'';
+      var div=document.createElement('div'); div.className='node';
+      div.innerHTML='<i class="dot '+n.status+'"></i><span class="nm">'+n.id+'</span>'+
+        '<span class="bar"><span class="fill" style="width:'+pct+'%;background:'+color+'"></span></span>'+
+        '<span class="val">'+val+pop+'</span>';
+      host.appendChild(div);
+    });
+  }
+
+  function renderReplay(){
+    var host=document.getElementById('replayList'); host.innerHTML='';
+    S.dates.forEach(function(d){
+      var b=S.briefings[d];
+      var div=document.createElement('div'); div.className='node';
+      div.style.cursor='pointer';
+      div.innerHTML='<i class="dot '+(b.risk==='high'?'low':b.risk==='elevated'?'marginal':'ok')+'"></i>'+
+        '<span class="nm">'+d+'</span><span class="bar"></span>'+
+        '<span class="val">'+b.risk+' · '+fmt(b.recommended_dose_mg_l,2)+' mg/L</span>';
+      div.onclick=function(){dateSel.value=d;update();showTab('today');};
+      host.appendChild(div);
+    });
+  }
+
+  function renderArea(){
+    var c=S.consumer;
+    document.getElementById('areaLoc').textContent=c.location;
+    document.getElementById('areaSummary').textContent=c.summary;
+    var host=document.getElementById('areaStations'); host.innerHTML='';
+    c.stations.forEach(function(s){
+      var ex = s.exceedances&&s.exceedances.length?(' · ⚠ '+s.exceedances.length+' BIS exceedance(s)'):' · no BIS exceedances';
+      var div=document.createElement('div'); div.className='kv';
+      div.innerHTML='<span class="k">'+s.name+' <span class="muted">('+s.distance_km+' km · '+s.data_year+', '+s.data_age_years+' yr old)</span></span>'+
+        '<span class="v">'+ex+'</span>';
+      host.appendChild(div);
+    });
+    document.getElementById('areaCaveat').textContent=c.what_this_cannot_tell_you;
+  }
+
+  function update(){
+    var b=S.briefings[dateSel.value];
+    renderToday(b); renderNetwork(b);
+  }
+  dateSel.onchange=update;
+
+  function showTab(t){
+    ['today','network','replay','area'].forEach(function(id){
+      document.getElementById(id).classList.toggle('hidden', id!==t);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(el){
+      el.classList.toggle('active', el.dataset.t===t);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(el){
+    el.onclick=function(){showTab(el.dataset.t);};
+  });
+
+  var pc=S.provenance_counts;
+  document.getElementById('prov').innerHTML =
+    'Provenance: <b>'+pc.public_observed.toLocaleString()+'</b> observed · <b>'+
+    pc.modelled.toLocaleString()+'</b> modelled · <b>'+pc.synthetic.toLocaleString()+
+    '</b> synthetic. '+S.disclaimer+' Snapshot '+ (S.generated_at||'').slice(0,10)+'.';
+
+  renderReplay(); renderArea(); update(); showTab('today');
+})();
+</script>
+</body>
+</html>
