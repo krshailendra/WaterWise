@@ -49,8 +49,23 @@ def main() -> None:
                   f"events={gr['events_written']}")
         except Exception as e:  # noqa: BLE001 — GDELT is flaky; never crash the loop
             print(f"[run_daily] gdelt skipped: {type(e).__name__}: {e}")
-    else:
-        print("[run_daily] stage not yet wired — added in later phases (P3-P8).")
+    if args.stage == "synth":
+        from pipeline.synthetic import network, tap_readings, complaints
+        from models.twin import drivers
+        network.persist()
+        drivers.persist()
+        tap_readings.generate()
+        complaints.generate()
+        print("[run_daily] synthetic network + drivers + tap readings + complaints regenerated")
+
+    if args.stage == "validate":
+        from pipeline.validate.synthetic_checks import run_all, provenance_counts
+        r = run_all()
+        print(f"[run_daily] synthetic checks all_pass={r['all_pass']}")
+        print(f"[run_daily] provenance counts: {provenance_counts()}")
+
+    if args.stage not in ("ingest", "daily", "synth", "validate"):
+        print("[run_daily] stage not yet wired — added in later phases (P7-P8).")
 
 
 if __name__ == "__main__":

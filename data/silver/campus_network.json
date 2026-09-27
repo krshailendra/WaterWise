@@ -1,0 +1,2060 @@
+{
+  "seed": 20250926,
+  "nodes": {
+    "wtp": {
+      "kind": "wtp",
+      "residence_h": 0.0
+    },
+    "reservoir": {
+      "kind": "reservoir",
+      "residence_h": 3.0
+    },
+    "H01": {
+      "kind": "hostel_tank",
+      "residence_h": 6.46,
+      "population": 620
+    },
+    "H01_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H01_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H02": {
+      "kind": "hostel_tank",
+      "residence_h": 16.35,
+      "population": 540
+    },
+    "H02_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H02_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H03": {
+      "kind": "hostel_tank",
+      "residence_h": 21.49,
+      "population": 700
+    },
+    "H03_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H03_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H04": {
+      "kind": "hostel_tank",
+      "residence_h": 18.63,
+      "population": 830
+    },
+    "H04_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H04_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H05": {
+      "kind": "hostel_tank",
+      "residence_h": 16.73,
+      "population": 450
+    },
+    "H05_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H05_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H06": {
+      "kind": "hostel_tank",
+      "residence_h": 10.14,
+      "population": 900
+    },
+    "H06_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H06_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H07": {
+      "kind": "hostel_tank",
+      "residence_h": 22.77,
+      "population": 610
+    },
+    "H07_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H07_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H08": {
+      "kind": "hostel_tank",
+      "residence_h": 6.91,
+      "population": 720
+    },
+    "H08_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H08_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H09": {
+      "kind": "hostel_tank",
+      "residence_h": 22.59,
+      "population": 300
+    },
+    "H09_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H09_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H10": {
+      "kind": "hostel_tank",
+      "residence_h": 7.79,
+      "population": 880
+    },
+    "H10_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H10_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H11": {
+      "kind": "hostel_tank",
+      "residence_h": 20.15,
+      "population": 560
+    },
+    "H11_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H11_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    },
+    "H12": {
+      "kind": "hostel_tank",
+      "residence_h": 23.57,
+      "population": 640
+    },
+    "H12_cooler": {
+      "kind": "cooler",
+      "residence_h": 0.5
+    },
+    "H12_ro": {
+      "kind": "ro_unit",
+      "residence_h": 0.5
+    }
+  },
+  "edges": [
+    {
+      "from_site_id": "wtp",
+      "to_site_id": "reservoir",
+      "travel_time_h_mean": 0.462,
+      "travel_time_h_sd": 0.092,
+      "pipe_k_wall_per_day": 0.073
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H01",
+      "travel_time_h_mean": 0.744,
+      "travel_time_h_sd": 0.186,
+      "pipe_k_wall_per_day": 0.239
+    },
+    {
+      "from_site_id": "H01",
+      "to_site_id": "H01_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.27
+    },
+    {
+      "from_site_id": "H01",
+      "to_site_id": "H01_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.271
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H02",
+      "travel_time_h_mean": 0.927,
+      "travel_time_h_sd": 0.232,
+      "pipe_k_wall_per_day": 0.26
+    },
+    {
+      "from_site_id": "H02",
+      "to_site_id": "H02_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.187
+    },
+    {
+      "from_site_id": "H02",
+      "to_site_id": "H02_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.437
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H03",
+      "travel_time_h_mean": 1.11,
+      "travel_time_h_sd": 0.278,
+      "pipe_k_wall_per_day": 0.236
+    },
+    {
+      "from_site_id": "H03",
+      "to_site_id": "H03_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.217
+    },
+    {
+      "from_site_id": "H03",
+      "to_site_id": "H03_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.416
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H04",
+      "travel_time_h_mean": 1.364,
+      "travel_time_h_sd": 0.341,
+      "pipe_k_wall_per_day": 0.366
+    },
+    {
+      "from_site_id": "H04",
+      "to_site_id": "H04_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.453
+    },
+    {
+      "from_site_id": "H04",
+      "to_site_id": "H04_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.139
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H05",
+      "travel_time_h_mean": 1.547,
+      "travel_time_h_sd": 0.387,
+      "pipe_k_wall_per_day": 0.392
+    },
+    {
+      "from_site_id": "H05",
+      "to_site_id": "H05_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.49
+    },
+    {
+      "from_site_id": "H05",
+      "to_site_id": "H05_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.131
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H06",
+      "travel_time_h_mean": 1.731,
+      "travel_time_h_sd": 0.433,
+      "pipe_k_wall_per_day": 0.484
+    },
+    {
+      "from_site_id": "H06",
+      "to_site_id": "H06_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.308
+    },
+    {
+      "from_site_id": "H06",
+      "to_site_id": "H06_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.209
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H07",
+      "travel_time_h_mean": 1.914,
+      "travel_time_h_sd": 0.479,
+      "pipe_k_wall_per_day": 0.33
+    },
+    {
+      "from_site_id": "H07",
+      "to_site_id": "H07_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.472
+    },
+    {
+      "from_site_id": "H07",
+      "to_site_id": "H07_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.335
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H08",
+      "travel_time_h_mean": 2.112,
+      "travel_time_h_sd": 0.528,
+      "pipe_k_wall_per_day": 0.22
+    },
+    {
+      "from_site_id": "H08",
+      "to_site_id": "H08_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.321
+    },
+    {
+      "from_site_id": "H08",
+      "to_site_id": "H08_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.307
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H09",
+      "travel_time_h_mean": 2.309,
+      "travel_time_h_sd": 0.577,
+      "pipe_k_wall_per_day": 0.071
+    },
+    {
+      "from_site_id": "H09",
+      "to_site_id": "H09_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.222
+    },
+    {
+      "from_site_id": "H09",
+      "to_site_id": "H09_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.194
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H10",
+      "travel_time_h_mean": 2.521,
+      "travel_time_h_sd": 0.63,
+      "pipe_k_wall_per_day": 0.199
+    },
+    {
+      "from_site_id": "H10",
+      "to_site_id": "H10_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.35
+    },
+    {
+      "from_site_id": "H10",
+      "to_site_id": "H10_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.432
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H11",
+      "travel_time_h_mean": 2.746,
+      "travel_time_h_sd": 0.687,
+      "pipe_k_wall_per_day": 0.387
+    },
+    {
+      "from_site_id": "H11",
+      "to_site_id": "H11_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.266
+    },
+    {
+      "from_site_id": "H11",
+      "to_site_id": "H11_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.303
+    },
+    {
+      "from_site_id": "reservoir",
+      "to_site_id": "H12",
+      "travel_time_h_mean": 3.0,
+      "travel_time_h_sd": 0.75,
+      "pipe_k_wall_per_day": 0.433
+    },
+    {
+      "from_site_id": "H12",
+      "to_site_id": "H12_cooler",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.31
+    },
+    {
+      "from_site_id": "H12",
+      "to_site_id": "H12_ro",
+      "travel_time_h_mean": 0.292,
+      "travel_time_h_sd": 0.073,
+      "pipe_k_wall_per_day": 0.355
+    }
+  ],
+  "paths": {
+    "reservoir": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      }
+    ],
+    "H01": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H01",
+        "time_h": 0.744,
+        "time_sd": 0.186,
+        "k_wall": 0.239
+      },
+      {
+        "type": "residence",
+        "from": "H01",
+        "to": "H01",
+        "time_h": 6.46,
+        "time_sd": 0.969,
+        "k_wall": 0.0
+      }
+    ],
+    "H01_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H01",
+        "time_h": 0.744,
+        "time_sd": 0.186,
+        "k_wall": 0.239
+      },
+      {
+        "type": "residence",
+        "from": "H01",
+        "to": "H01",
+        "time_h": 6.46,
+        "time_sd": 0.969,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H01",
+        "to": "H01_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.27
+      },
+      {
+        "type": "residence",
+        "from": "H01_cooler",
+        "to": "H01_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H01_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H01",
+        "time_h": 0.744,
+        "time_sd": 0.186,
+        "k_wall": 0.239
+      },
+      {
+        "type": "residence",
+        "from": "H01",
+        "to": "H01",
+        "time_h": 6.46,
+        "time_sd": 0.969,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H01",
+        "to": "H01_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.271
+      },
+      {
+        "type": "residence",
+        "from": "H01_ro",
+        "to": "H01_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H02": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H02",
+        "time_h": 0.927,
+        "time_sd": 0.232,
+        "k_wall": 0.26
+      },
+      {
+        "type": "residence",
+        "from": "H02",
+        "to": "H02",
+        "time_h": 16.35,
+        "time_sd": 2.4525,
+        "k_wall": 0.0
+      }
+    ],
+    "H02_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H02",
+        "time_h": 0.927,
+        "time_sd": 0.232,
+        "k_wall": 0.26
+      },
+      {
+        "type": "residence",
+        "from": "H02",
+        "to": "H02",
+        "time_h": 16.35,
+        "time_sd": 2.4525,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H02",
+        "to": "H02_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.187
+      },
+      {
+        "type": "residence",
+        "from": "H02_cooler",
+        "to": "H02_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H02_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H02",
+        "time_h": 0.927,
+        "time_sd": 0.232,
+        "k_wall": 0.26
+      },
+      {
+        "type": "residence",
+        "from": "H02",
+        "to": "H02",
+        "time_h": 16.35,
+        "time_sd": 2.4525,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H02",
+        "to": "H02_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.437
+      },
+      {
+        "type": "residence",
+        "from": "H02_ro",
+        "to": "H02_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H03": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H03",
+        "time_h": 1.11,
+        "time_sd": 0.278,
+        "k_wall": 0.236
+      },
+      {
+        "type": "residence",
+        "from": "H03",
+        "to": "H03",
+        "time_h": 21.49,
+        "time_sd": 3.2234999999999996,
+        "k_wall": 0.0
+      }
+    ],
+    "H03_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H03",
+        "time_h": 1.11,
+        "time_sd": 0.278,
+        "k_wall": 0.236
+      },
+      {
+        "type": "residence",
+        "from": "H03",
+        "to": "H03",
+        "time_h": 21.49,
+        "time_sd": 3.2234999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H03",
+        "to": "H03_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.217
+      },
+      {
+        "type": "residence",
+        "from": "H03_cooler",
+        "to": "H03_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H03_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H03",
+        "time_h": 1.11,
+        "time_sd": 0.278,
+        "k_wall": 0.236
+      },
+      {
+        "type": "residence",
+        "from": "H03",
+        "to": "H03",
+        "time_h": 21.49,
+        "time_sd": 3.2234999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H03",
+        "to": "H03_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.416
+      },
+      {
+        "type": "residence",
+        "from": "H03_ro",
+        "to": "H03_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H04": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H04",
+        "time_h": 1.364,
+        "time_sd": 0.341,
+        "k_wall": 0.366
+      },
+      {
+        "type": "residence",
+        "from": "H04",
+        "to": "H04",
+        "time_h": 18.63,
+        "time_sd": 2.7944999999999998,
+        "k_wall": 0.0
+      }
+    ],
+    "H04_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H04",
+        "time_h": 1.364,
+        "time_sd": 0.341,
+        "k_wall": 0.366
+      },
+      {
+        "type": "residence",
+        "from": "H04",
+        "to": "H04",
+        "time_h": 18.63,
+        "time_sd": 2.7944999999999998,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H04",
+        "to": "H04_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.453
+      },
+      {
+        "type": "residence",
+        "from": "H04_cooler",
+        "to": "H04_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H04_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H04",
+        "time_h": 1.364,
+        "time_sd": 0.341,
+        "k_wall": 0.366
+      },
+      {
+        "type": "residence",
+        "from": "H04",
+        "to": "H04",
+        "time_h": 18.63,
+        "time_sd": 2.7944999999999998,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H04",
+        "to": "H04_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.139
+      },
+      {
+        "type": "residence",
+        "from": "H04_ro",
+        "to": "H04_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H05": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H05",
+        "time_h": 1.547,
+        "time_sd": 0.387,
+        "k_wall": 0.392
+      },
+      {
+        "type": "residence",
+        "from": "H05",
+        "to": "H05",
+        "time_h": 16.73,
+        "time_sd": 2.5095,
+        "k_wall": 0.0
+      }
+    ],
+    "H05_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H05",
+        "time_h": 1.547,
+        "time_sd": 0.387,
+        "k_wall": 0.392
+      },
+      {
+        "type": "residence",
+        "from": "H05",
+        "to": "H05",
+        "time_h": 16.73,
+        "time_sd": 2.5095,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H05",
+        "to": "H05_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.49
+      },
+      {
+        "type": "residence",
+        "from": "H05_cooler",
+        "to": "H05_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H05_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H05",
+        "time_h": 1.547,
+        "time_sd": 0.387,
+        "k_wall": 0.392
+      },
+      {
+        "type": "residence",
+        "from": "H05",
+        "to": "H05",
+        "time_h": 16.73,
+        "time_sd": 2.5095,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H05",
+        "to": "H05_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.131
+      },
+      {
+        "type": "residence",
+        "from": "H05_ro",
+        "to": "H05_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H06": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H06",
+        "time_h": 1.731,
+        "time_sd": 0.433,
+        "k_wall": 0.484
+      },
+      {
+        "type": "residence",
+        "from": "H06",
+        "to": "H06",
+        "time_h": 10.14,
+        "time_sd": 1.5210000000000001,
+        "k_wall": 0.0
+      }
+    ],
+    "H06_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H06",
+        "time_h": 1.731,
+        "time_sd": 0.433,
+        "k_wall": 0.484
+      },
+      {
+        "type": "residence",
+        "from": "H06",
+        "to": "H06",
+        "time_h": 10.14,
+        "time_sd": 1.5210000000000001,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H06",
+        "to": "H06_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.308
+      },
+      {
+        "type": "residence",
+        "from": "H06_cooler",
+        "to": "H06_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H06_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H06",
+        "time_h": 1.731,
+        "time_sd": 0.433,
+        "k_wall": 0.484
+      },
+      {
+        "type": "residence",
+        "from": "H06",
+        "to": "H06",
+        "time_h": 10.14,
+        "time_sd": 1.5210000000000001,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H06",
+        "to": "H06_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.209
+      },
+      {
+        "type": "residence",
+        "from": "H06_ro",
+        "to": "H06_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H07": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H07",
+        "time_h": 1.914,
+        "time_sd": 0.479,
+        "k_wall": 0.33
+      },
+      {
+        "type": "residence",
+        "from": "H07",
+        "to": "H07",
+        "time_h": 22.77,
+        "time_sd": 3.4154999999999998,
+        "k_wall": 0.0
+      }
+    ],
+    "H07_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H07",
+        "time_h": 1.914,
+        "time_sd": 0.479,
+        "k_wall": 0.33
+      },
+      {
+        "type": "residence",
+        "from": "H07",
+        "to": "H07",
+        "time_h": 22.77,
+        "time_sd": 3.4154999999999998,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H07",
+        "to": "H07_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.472
+      },
+      {
+        "type": "residence",
+        "from": "H07_cooler",
+        "to": "H07_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H07_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H07",
+        "time_h": 1.914,
+        "time_sd": 0.479,
+        "k_wall": 0.33
+      },
+      {
+        "type": "residence",
+        "from": "H07",
+        "to": "H07",
+        "time_h": 22.77,
+        "time_sd": 3.4154999999999998,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H07",
+        "to": "H07_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.335
+      },
+      {
+        "type": "residence",
+        "from": "H07_ro",
+        "to": "H07_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H08": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H08",
+        "time_h": 2.112,
+        "time_sd": 0.528,
+        "k_wall": 0.22
+      },
+      {
+        "type": "residence",
+        "from": "H08",
+        "to": "H08",
+        "time_h": 6.91,
+        "time_sd": 1.0365,
+        "k_wall": 0.0
+      }
+    ],
+    "H08_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H08",
+        "time_h": 2.112,
+        "time_sd": 0.528,
+        "k_wall": 0.22
+      },
+      {
+        "type": "residence",
+        "from": "H08",
+        "to": "H08",
+        "time_h": 6.91,
+        "time_sd": 1.0365,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H08",
+        "to": "H08_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.321
+      },
+      {
+        "type": "residence",
+        "from": "H08_cooler",
+        "to": "H08_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H08_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H08",
+        "time_h": 2.112,
+        "time_sd": 0.528,
+        "k_wall": 0.22
+      },
+      {
+        "type": "residence",
+        "from": "H08",
+        "to": "H08",
+        "time_h": 6.91,
+        "time_sd": 1.0365,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H08",
+        "to": "H08_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.307
+      },
+      {
+        "type": "residence",
+        "from": "H08_ro",
+        "to": "H08_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H09": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H09",
+        "time_h": 2.309,
+        "time_sd": 0.577,
+        "k_wall": 0.071
+      },
+      {
+        "type": "residence",
+        "from": "H09",
+        "to": "H09",
+        "time_h": 22.59,
+        "time_sd": 3.3885,
+        "k_wall": 0.0
+      }
+    ],
+    "H09_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H09",
+        "time_h": 2.309,
+        "time_sd": 0.577,
+        "k_wall": 0.071
+      },
+      {
+        "type": "residence",
+        "from": "H09",
+        "to": "H09",
+        "time_h": 22.59,
+        "time_sd": 3.3885,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H09",
+        "to": "H09_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.222
+      },
+      {
+        "type": "residence",
+        "from": "H09_cooler",
+        "to": "H09_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H09_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H09",
+        "time_h": 2.309,
+        "time_sd": 0.577,
+        "k_wall": 0.071
+      },
+      {
+        "type": "residence",
+        "from": "H09",
+        "to": "H09",
+        "time_h": 22.59,
+        "time_sd": 3.3885,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H09",
+        "to": "H09_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.194
+      },
+      {
+        "type": "residence",
+        "from": "H09_ro",
+        "to": "H09_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H10": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H10",
+        "time_h": 2.521,
+        "time_sd": 0.63,
+        "k_wall": 0.199
+      },
+      {
+        "type": "residence",
+        "from": "H10",
+        "to": "H10",
+        "time_h": 7.79,
+        "time_sd": 1.1684999999999999,
+        "k_wall": 0.0
+      }
+    ],
+    "H10_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H10",
+        "time_h": 2.521,
+        "time_sd": 0.63,
+        "k_wall": 0.199
+      },
+      {
+        "type": "residence",
+        "from": "H10",
+        "to": "H10",
+        "time_h": 7.79,
+        "time_sd": 1.1684999999999999,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H10",
+        "to": "H10_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.35
+      },
+      {
+        "type": "residence",
+        "from": "H10_cooler",
+        "to": "H10_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H10_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H10",
+        "time_h": 2.521,
+        "time_sd": 0.63,
+        "k_wall": 0.199
+      },
+      {
+        "type": "residence",
+        "from": "H10",
+        "to": "H10",
+        "time_h": 7.79,
+        "time_sd": 1.1684999999999999,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H10",
+        "to": "H10_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.432
+      },
+      {
+        "type": "residence",
+        "from": "H10_ro",
+        "to": "H10_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H11": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H11",
+        "time_h": 2.746,
+        "time_sd": 0.687,
+        "k_wall": 0.387
+      },
+      {
+        "type": "residence",
+        "from": "H11",
+        "to": "H11",
+        "time_h": 20.15,
+        "time_sd": 3.0224999999999995,
+        "k_wall": 0.0
+      }
+    ],
+    "H11_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H11",
+        "time_h": 2.746,
+        "time_sd": 0.687,
+        "k_wall": 0.387
+      },
+      {
+        "type": "residence",
+        "from": "H11",
+        "to": "H11",
+        "time_h": 20.15,
+        "time_sd": 3.0224999999999995,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H11",
+        "to": "H11_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.266
+      },
+      {
+        "type": "residence",
+        "from": "H11_cooler",
+        "to": "H11_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H11_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H11",
+        "time_h": 2.746,
+        "time_sd": 0.687,
+        "k_wall": 0.387
+      },
+      {
+        "type": "residence",
+        "from": "H11",
+        "to": "H11",
+        "time_h": 20.15,
+        "time_sd": 3.0224999999999995,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H11",
+        "to": "H11_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.303
+      },
+      {
+        "type": "residence",
+        "from": "H11_ro",
+        "to": "H11_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H12": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H12",
+        "time_h": 3.0,
+        "time_sd": 0.75,
+        "k_wall": 0.433
+      },
+      {
+        "type": "residence",
+        "from": "H12",
+        "to": "H12",
+        "time_h": 23.57,
+        "time_sd": 3.5355,
+        "k_wall": 0.0
+      }
+    ],
+    "H12_cooler": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H12",
+        "time_h": 3.0,
+        "time_sd": 0.75,
+        "k_wall": 0.433
+      },
+      {
+        "type": "residence",
+        "from": "H12",
+        "to": "H12",
+        "time_h": 23.57,
+        "time_sd": 3.5355,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H12",
+        "to": "H12_cooler",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.31
+      },
+      {
+        "type": "residence",
+        "from": "H12_cooler",
+        "to": "H12_cooler",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ],
+    "H12_ro": [
+      {
+        "type": "pipe",
+        "from": "wtp",
+        "to": "reservoir",
+        "time_h": 0.462,
+        "time_sd": 0.092,
+        "k_wall": 0.073
+      },
+      {
+        "type": "residence",
+        "from": "reservoir",
+        "to": "reservoir",
+        "time_h": 3.0,
+        "time_sd": 0.44999999999999996,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "reservoir",
+        "to": "H12",
+        "time_h": 3.0,
+        "time_sd": 0.75,
+        "k_wall": 0.433
+      },
+      {
+        "type": "residence",
+        "from": "H12",
+        "to": "H12",
+        "time_h": 23.57,
+        "time_sd": 3.5355,
+        "k_wall": 0.0
+      },
+      {
+        "type": "pipe",
+        "from": "H12",
+        "to": "H12_ro",
+        "time_h": 0.292,
+        "time_sd": 0.073,
+        "k_wall": 0.355
+      },
+      {
+        "type": "residence",
+        "from": "H12_ro",
+        "to": "H12_ro",
+        "time_h": 0.5,
+        "time_sd": 0.075,
+        "k_wall": 0.0
+      }
+    ]
+  },
+  "generator_version": "1.0.0",
+  "source_ref": "generator=pipeline.synthetic.network@1.0.0 seed=20250926 | SIMULATED (team-estimate params, Part B \u00a75)"
+}
