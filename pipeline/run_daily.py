@@ -64,8 +64,14 @@ def main() -> None:
         print(f"[run_daily] synthetic checks all_pass={r['all_pass']}")
         print(f"[run_daily] provenance counts: {provenance_counts()}")
 
-    if args.stage not in ("ingest", "daily", "synth", "validate"):
-        print("[run_daily] stage not yet wired — added in later phases (P7-P8).")
+    if args.stage == "train":
+        from models.virtual_sensor.train import train_and_predict
+        r = train_and_predict()
+        print(f"[run_daily] virtual sensor: MAE p50={r.get('mae_p50_model')} "
+              f"vs persistence {r.get('mae_persistence')} -> production={r.get('production_predictor')}")
+
+    if args.stage not in ("ingest", "daily", "synth", "validate", "train"):
+        print("[run_daily] stage not yet wired — added in later phases (P8).")
 
 
 if __name__ == "__main__":
