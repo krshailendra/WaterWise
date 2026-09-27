@@ -55,11 +55,14 @@ def _params():
 def monte_carlo_residuals(model: dict, dose_mg_l: float, temp_c: float,
                           demand_mg_l: float, n_mc: int = 500,
                           seed: Optional[int] = None,
-                          params: Optional[dict] = None) -> dict:
-    """Return {node_id: {p10,p50,p90,mean}} plus 'inputs'. MC over k_b20, demand
-    noise, segment times and wall-decay noise."""
+                          params: Optional[dict] = None,
+                          target_mg_l: Optional[float] = None) -> dict:
+    """Return {node_id: {p10,p50,p90,mean,p_below}} plus 'inputs'. MC over k_b20,
+    demand noise, segment times and wall-decay noise. p_below = P(residual <
+    target_mg_l), used by the test-next VOI ranking."""
     params = params or _params()
     ch = params["chlorine"]
+    target = target_mg_l if target_mg_l is not None else params["dose"]["target_residual_mg_l"]
     seed = seed if seed is not None else params["seed"]
     rng = np.random.default_rng(seed)
 
@@ -87,7 +90,8 @@ def monte_carlo_residuals(model: dict, dose_mg_l: float, temp_c: float,
                 kb_samples[m], theta, kwall_scale[m], tscale)
         p10, p50, p90 = np.percentile(vals, [10, 50, 90])
         results[node_id] = {"p10": round(float(p10), 4), "p50": round(float(p50), 4),
-                            "p90": round(float(p90), 4), "mean": round(float(vals.mean()), 4)}
+                            "p90": round(float(p90), 4), "mean": round(float(vals.mean()), 4),
+                            "p_below": round(float(np.mean(vals < target)), 4)}
     return {"nodes": results,
             "inputs": {"dose_mg_l": dose_mg_l, "water_temp_c": temp_c,
                        "chlorine_demand_mg_l": demand_mg_l, "n_mc": n_mc,

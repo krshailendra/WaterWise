@@ -27,6 +27,11 @@ def main() -> None:
     print(f"[run_daily] stage={args.stage} date={args.date} "
           f"incremental={args.incremental}")
 
+    if args.stage == "daily":
+        from pipeline.daily_briefing import produce
+        r = produce([args.date])
+        print(f"[run_daily] daily_briefing written for {args.date}")
+
     if args.stage in ("ingest", "daily"):
         # incremental hydro-met fetch (Open-Meteo + GloFAS) — safe to run often
         from pipeline.ingest import openmeteo
