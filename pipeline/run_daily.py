@@ -36,6 +36,12 @@ def main() -> None:
         from models.eta import flow_lag
         flow_lag.compute(save_plot=False)
         print("[run_daily] flow lags recomputed")
+        try:
+            from pipeline.ingest import sentinel2
+            s2s = sentinel2.run(incremental=True)
+            print(f"[run_daily] sentinel2: new_rows={s2s.get('new_rows')}")
+        except Exception as e:  # noqa: BLE001 — never crash the live loop on S2
+            print(f"[run_daily] sentinel2 skipped: {type(e).__name__}: {e}")
     else:
         print("[run_daily] stage not yet wired — added in later phases (P3-P8).")
 

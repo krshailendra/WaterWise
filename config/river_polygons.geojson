@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "note": "River-water sampling polygons for Sentinel-2 NDTI (P3). Kept inside the main Brahmaputra channel near Guwahati; SCL==6 water masking drops any non-water pixels that fall inside. Adjust if clear-water pixel counts are low (logged in REPORT).",
+  "crs": "EPSG:4326",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "polygon_id": "guwahati_reach",
+        "name": "Brahmaputra Guwahati reach (Pandu-Kacharighat)",
+        "role": "city_reach"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [91.685, 26.190],
+          [91.720, 26.190],
+          [91.720, 26.202],
+          [91.685, 26.202],
+          [91.685, 26.190]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "polygon_id": "iitg_intake_reach",
+        "name": "Brahmaputra near IITG intake reach",
+        "role": "campus_intake"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [91.640, 26.175],
+          [91.672, 26.175],
+          [91.672, 26.188],
+          [91.640, 26.188],
+          [91.640, 26.175]
+        ]]
+      }
+    }
+  ]
+}
