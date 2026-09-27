@@ -1,0 +1,22 @@
+# config/assam_gazetteer.yaml — offline gazetteer of Brahmaputra towns (P4).
+# Used to geocode incident place names without a paid geocoder.
+# river_km = approximate cumulative distance DOWNSTREAM along the Brahmaputra
+# from Pasighat (team estimate, for ETA ordering only — NOT survey-grade).
+# The IITG intake sits at Guwahati (~650 km). An upstream incident's river
+# distance to the intake = intake_km - town_km (only positive = upstream).
+
+intake_river_km: 650   # IITG intake at Guwahati reach (team estimate)
+
+places:
+  - {name: "Pasighat",   aliases: ["Pasighat"],            lat: 28.066, lon: 95.326, river_km: 0}
+  - {name: "Dibrugarh",  aliases: ["Dibrugarh"],           lat: 27.472, lon: 94.912, river_km: 150}
+  - {name: "Nimatighat", aliases: ["Nimatighat","Jorhat","Neamatighat"], lat: 26.800, lon: 94.320, river_km: 300}
+  - {name: "Tezpur",     aliases: ["Tezpur","Sonitpur"],   lat: 26.633, lon: 92.800, river_km: 450}
+  - {name: "Guwahati",   aliases: ["Guwahati","Gauhati","Pandu","Kacharighat","Kamrup"], lat: 26.176, lon: 91.684, river_km: 650}
+  - {name: "Bharalu",    aliases: ["Bharalu"],             lat: 26.168, lon: 91.765, river_km: 650}
+  - {name: "Goalpara",   aliases: ["Goalpara"],            lat: 26.170, lon: 90.626, river_km: 760}
+  - {name: "Dhubri",     aliases: ["Dhubri"],              lat: 26.016, lon: 89.993, river_km: 850}
+  - {name: "Kopili",     aliases: ["Kopili","Kapili"],     lat: 26.200, lon: 92.900, river_km: 460}
+  - {name: "Sivasagar",  aliases: ["Sivasagar","Sibsagar"], lat: 26.985, lon: 94.638, river_km: 260}
+  - {name: "Digboi",     aliases: ["Digboi"],              lat: 27.393, lon: 95.619, river_km: 120}
+  - {name: "Assam",      aliases: ["Assam"],               lat: 26.200, lon: 92.937, river_km: null}  # state-level, no chainage

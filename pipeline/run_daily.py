@@ -42,6 +42,13 @@ def main() -> None:
             print(f"[run_daily] sentinel2: new_rows={s2s.get('new_rows')}")
         except Exception as e:  # noqa: BLE001 — never crash the live loop on S2
             print(f"[run_daily] sentinel2 skipped: {type(e).__name__}: {e}")
+        try:
+            from pipeline.ingest import gdelt
+            gr = gdelt.run_incidents(use_llm=True)
+            print(f"[run_daily] gdelt incidents: fetched={gr['articles_fetched']} "
+                  f"events={gr['events_written']}")
+        except Exception as e:  # noqa: BLE001 — GDELT is flaky; never crash the loop
+            print(f"[run_daily] gdelt skipped: {type(e).__name__}: {e}")
     else:
         print("[run_daily] stage not yet wired — added in later phases (P3-P8).")
 
