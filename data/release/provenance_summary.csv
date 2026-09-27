@@ -1,0 +1,12 @@
+table,provenance,rows
+cpcb_river,public_observed,3938
+cpcb_groundwater,public_observed,3820
+hydromet,public_observed,74518
+s2_ndti,public_observed,1640
+tap_readings,synthetic,13092
+network_edges,synthetic,37
+network_sites,synthetic,38
+complaints,synthetic,102
+virtual_sensor_daily,modelled,3922
+water_temp_daily,modelled,3919
+chlorine_demand_daily,modelled,3551

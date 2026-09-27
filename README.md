@@ -1,38 +1,175 @@
 # WaterWise — source-to-tap water intelligence
 
-WaterWise tells the IIT Guwahati water treatment plant (WTP) chemist, every
-morning, what chlorine dose keeps every hostel tap safe — and where to test
-next. It is built from **public** river, weather and satellite data, with the
-parts we can't yet measure (the campus network, tap residuals) **simulated from
-documented physics** and clearly labelled `synthetic`.
+WaterWise gives the IIT Guwahati water treatment plant team a morning view of the
+water-risk picture across the campus network: which taps are most at risk,
+what chlorine dose is needed, where to test next, and how to route the right
+kind of action to the right authority. It combines public river, weather and
+satellite observations with modelled estimates and a clearly labelled synthetic
+campus network where the real field measurements are not yet available.
 
-Built for the Granica × IIT Guwahati "Bring the Physical World to AI" hackathon.
+Built for the Granica × IIT Guwahati “Bring the Physical World to AI” hackathon.
 
-> **The plan of record is [PLAN.md](PLAN.md). The build log is [REPORT.md](REPORT.md).**
-> Rules that must persist across sessions live in [CLAUDE.md](CLAUDE.md).
+## Project overview
 
-## Provenance, always
+WaterWise is a provenance-aware water intelligence system with three layers:
 
-Every data row carries `provenance ∈ {public_observed, modelled, synthetic}`,
-plus `source_id` and `source_ref`. Safety numbers (dose, residuals, ETAs, risk)
-come only from deterministic, unit-tested Python — never an LLM. The app never
-calls water "unsafe" unless an authority confirms it.
+1. Public observations from river, weather and satellite data.
+2. Deterministic modelled outputs for water temperature, chlorine demand and
+   risk estimation.
+3. Synthetic campus-network simulation for the parts we cannot yet measure, such
+   as tap residuals and pipe network behaviour.
 
-## Quickstart (dev)
+The product is designed to help two audiences separately:
+
+- Campus operations: chlorine dose, risk band, worst tap, network state,
+  authority routing and field verification steps.
+- Nearby residents: practical guidance, actual limits of local public data,
+  safe alternatives, and who to contact for their PIN/area.
+
+The app is intentionally offline-friendly and runs from a bundled snapshot.
+
+## Data documentation
+
+This project is documented in the following files:
+
+- [docs/DATASHEET.md](docs/DATASHEET.md) — dataset description, row counts,
+  collection windows, source list, observed vs modelled vs synthetic summary.
+- [docs/SCHEMA.md](docs/SCHEMA.md) — authoritative schema for the project
+  tables and columns.
+- [docs/SYNTHETIC_METHOD.md](docs/SYNTHETIC_METHOD.md) — how synthetic data is
+  generated, seeded and made auditable.
+- [PLAN.md](PLAN.md) — plan of record and design decisions.
+- [REPORT.md](REPORT.md) — build log and honest limits.
+
+## Sample data
+
+A small release sample is included in the repo for quick inspection:
+
+- [data/release/sample_1000_rows.csv](data/release/sample_1000_rows.csv)
+- [data/release/provenance_summary.csv](data/release/provenance_summary.csv)
+- [data/release/load_example.py](data/release/load_example.py)
+
+These files are intended to make it easy for a reviewer to inspect the data split,
+provenance labels and example rows without needing the full raw pipeline outputs.
+
+## Schema summary
+
+The project uses a provenance-first schema. Every persisted row carries:
+
+- `provenance` ∈ {`public_observed`, `modelled`, `synthetic`}
+- `source_id`
+- `source_ref`
+- `retrieved_at` or `generated_at`
+
+The schema is defined in [pipeline/schemas.py](pipeline/schemas.py). See
+[docs/SCHEMA.md](docs/SCHEMA.md) for the table-level summary.
+
+Core data tables include:
+
+- public observed measurements from CPCB / Open-Meteo / Sentinel-2
+- modelled outputs such as temperature and chlorine demand
+- synthetic campus network and tap residuals
+- daily briefing outputs used by the app
+
+## Provenance split
+
+Summary of the project dataset from [docs/DATASHEET.md](docs/DATASHEET.md):
+
+- `public_observed`: 84,057 rows (~80.2%)
+- `modelled`: 7,470 rows (~7.1%)
+- `synthetic`: 13,273 rows (~12.7%)
+
+This means roughly 87.3% of the dataset is grounded in real measurements or
+model outputs derived from real data, while 12.7% is synthetic campus simulation
+used to represent unmeasured network behaviour.
+
+## Data sources and collection windows
+
+The project pulls from public data sources such as:
+
+- CPCB NWMP river and groundwater records
+- Open-Meteo ERA5 weather and GloFAS discharge data
+- Sentinel-2 imagery for relative turbidity / NDTI
+- other public and archive sources where available
+
+The exact summary and collection windows are in [docs/DATASHEET.md](docs/DATASHEET.md).
+
+## Observed vs modelled vs synthetic
+
+- Observed: real public data collected from APIs or published sources.
+- Modelled: values derived from real data using deterministic Python logic,
+  for example water temperature and chlorine demand.
+- Synthetic: campus pipe network and tap residuals generated only by code in
+  `pipeline/synthetic/`, with a fixed seed and documented parameters.
+
+Nothing synthetic is presented as a real measurement. It is clearly labelled and
+made auditable.
+
+## How AI was used
+
+AI was used selectively for extraction and classification tasks, not for the
+final safety decisions.
+
+- extraction/classification helpers for ingestion and incident handling
+- structured interpretation and summarization
+- not used for the final chlorine dose, residuals, risk levels or ETA outputs
+
+The key rule is that safety numbers are generated by deterministic, unit-tested
+Python, never by an LLM. This rule is enforced in the project design and is
+reflected in the documentation and app messaging.
+
+## App and demo
+
+The offline web app is in:
+
+- [app/demo.html](app/demo.html)
+- [app/snapshot.js](app/snapshot.js)
+- [app/snapshot.json](app/snapshot.json)
+
+The app is intentionally bundled and offline-safe, with a static snapshot so it
+still works even if the network or backend is unavailable.
+
+## Quickstart
 
 ```bash
 python -m venv .venv
-source .venv/Scripts/activate        # Windows Git Bash;  .venv/bin/activate on macOS/Linux
-pip install -e ".[dev]"              # add extras as needed: .[ingest,geo,ml,agents,api]
-cp .env.example .env                 # then add ANTHROPIC_API_KEY
+source .venv/Scripts/activate
+pip install -e ".[dev]"
 make test
 ```
 
-## Layout
+## Project structure
 
-See [PLAN.md](PLAN.md) Part A §4. Key directories: `config/` (locations, campus,
-params, dummy authorities, routing rules), `pipeline/` (ingest, synthetic,
-validate), `models/`, `agents/`, `api/`, `app/` (Expo), `data/` (bronze → silver
-→ gold → release).
+- [config](config) — locations, campus model, routing and authority rules
+- [pipeline](pipeline) — ingestion, validation, synthetic generation and daily
+  briefing logic
+- [models](models) — chlorine, routing, eta, risk and related deterministic
+  logic
+- [app](app) — offline demo app and bundled snapshot
+- [data](data) — bronze, silver, gold and release artifacts
+- [tests](tests) — unit tests for the deterministic safety logic
 
-A full 5-minute quickstart is added in P15.
+## Important project rules
+
+- The app never calls water “unsafe” on its own; authority confirmation is
+  required before that state is used.
+- Safety numbers are deterministic and auditable.
+- Synthetic data is clearly labelled and reproducible.
+- Provenance is always preserved in the data layer.
+
+> The plan of record is [PLAN.md](PLAN.md). The build log is [REPORT.md](REPORT.md).
+> Rules that must persist across sessions live in [CLAUDE.md](CLAUDE.md).
+
+## Why this repo is judge-friendly
+
+This repository exposes the project in a way that lets reviewers inspect:
+
+- the code
+- the data documentation
+- the schema
+- the provenance split
+- the app prototype
+- the release sample and summary files
+
+The goal is to make the project understandable without hidden internal notes or
+scratch workflow files.

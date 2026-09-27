@@ -56,6 +56,23 @@
   .legend span{display:inline-flex;align-items:center;gap:5px}
   .banner{border-radius:10px;padding:10px 12px;font-size:13.5px;font-weight:600;margin-bottom:10px}
   .banner.verify{background:rgba(242,167,46,.14);border:1px solid rgba(242,167,46,.4);color:var(--marg)}
+  .state-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .state-badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.3px;text-transform:uppercase}
+  .state-badge.watch{background:rgba(57,160,255,.14);color:var(--accent);border:1px solid rgba(57,160,255,.4)}
+  .state-badge.verify_requested{background:rgba(242,167,46,.14);color:var(--marg);border:1px solid rgba(242,167,46,.4)}
+  .state-badge.sample_collected{background:rgba(47,191,113,.14);color:var(--ok);border:1px solid rgba(47,191,113,.4)}
+  .state-badge.confirmed_unsafe{background:rgba(239,77,90,.18);color:var(--low);border:1px solid rgba(239,77,90,.4)}
+  .compact-list{list-style:none;margin:0;padding:0}
+  .compact-list li{padding:9px 10px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--panel2)}
+  .compact-list strong{display:block;margin-bottom:4px}
+  .alt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .alt-box{padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel2)}
+  .alt-box h4{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+  .alt-box .name{font-weight:800;margin-bottom:4px}
+  .tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid transparent;margin-top:6px}
+  .tag.verified{background:rgba(47,191,113,.12);color:var(--ok);border-color:rgba(47,191,113,.32)}
+  .tag.untested{background:rgba(242,167,46,.12);color:var(--marg);border-color:rgba(242,167,46,.32)}
+  .tag.demo{background:rgba(57,160,255,.12);color:var(--accent);border-color:rgba(57,160,255,.28)}
   footer{max-width:820px;margin:8px auto 40px;padding:0 16px;color:var(--mut);font-size:12px}
   .hidden{display:none}
   a{color:var(--accent)}
@@ -68,10 +85,8 @@
   </div>
 </header>
 <div class="tabs" id="tabs">
-  <div class="tab active" data-t="today">Today</div>
-  <div class="tab" data-t="network">Network</div>
-  <div class="tab" data-t="replay">Replay</div>
-  <div class="tab" data-t="area">My area</div>
+  <div class="tab active" data-t="campus">IITG Campus</div>
+  <div class="tab" data-t="resident">Around your area</div>
 </div>
 <div class="wrap">
   <div class="row" style="align-items:center;justify-content:space-between">
@@ -80,9 +95,19 @@
       <select id="date"></select></div>
   </div>
 
-  <!-- TODAY -->
-  <section id="today">
+  <!-- CAMPUS -->
+  <section id="campus">
     <div id="verifyBanner"></div>
+    <div class="card">
+      <h2>Alert status</h2>
+      <div class="state-row">
+        <span class="state-badge" id="stateBadge">watch</span>
+        <span class="muted" id="stateText">Monitoring only</span>
+      </div>
+      <div class="kv" style="margin-top:10px"><span class="k">Assigned owner</span><span class="v" id="owner">—</span></div>
+      <div class="kv"><span class="k">Triggered by</span><span class="v" id="trigger">—</span></div>
+      <div class="kv"><span class="k">Current state</span><span class="v" id="stateMeta">—</span></div>
+    </div>
     <div class="card">
       <h2>Recommended chlorine dose <span class="pill b-mod">modelled · simulated network</span></h2>
       <div class="big" id="dose">—<span class="unit"> mg/L</span></div>
@@ -94,6 +119,10 @@
     <div class="card">
       <h2>Why</h2>
       <div class="why" id="why"></div>
+    </div>
+    <div class="card">
+      <h2>Immediate campus actions</h2>
+      <ul class="compact-list" id="actions"></ul>
     </div>
     <div class="row">
       <div class="card" style="flex:1;min-width:230px">
@@ -108,17 +137,6 @@
       </div>
     </div>
     <div class="card">
-      <h2>Confidence &amp; inputs</h2>
-      <div class="kv"><span class="k">River turbidity NDTI (p50)</span><span class="v"><span id="ndti">—</span> <span class="pill b-mod">modelled</span></span></div>
-      <div class="kv"><span class="k">Water temperature (est.)</span><span class="v"><span id="temp">—</span> °C <span class="pill b-mod">modelled</span></span></div>
-      <div class="kv"><span class="k">Chlorine demand (est.)</span><span class="v"><span id="demand">—</span> mg/L <span class="pill b-syn">assumed</span></span></div>
-      <div class="kv"><span class="k">Active alerts</span><span class="v" id="alerts">—</span></div>
-    </div>
-  </section>
-
-  <!-- NETWORK -->
-  <section id="network" class="hidden">
-    <div class="card">
       <h2>Source → tap network <span class="pill b-syn">synthetic</span></h2>
       <div class="muted">River → intake → WTP → reservoir → hostel tanks. Coloured by p10 free-chlorine residual.</div>
       <div class="legend">
@@ -129,25 +147,61 @@
       </div>
       <div id="nodes" style="margin-top:8px"></div>
     </div>
-  </section>
-
-  <!-- REPLAY -->
-  <section id="replay" class="hidden">
+    <div class="row">
+      <div class="card" style="flex:1;min-width:260px">
+        <h2>Household alternatives</h2>
+        <div class="alt-grid" id="householdAlternatives"></div>
+      </div>
+      <div class="card" style="flex:1;min-width:260px">
+        <h2>Campus alternatives</h2>
+        <div class="alt-grid" id="campusAlternatives"></div>
+      </div>
+    </div>
     <div class="card">
-      <h2>Replay a historical day</h2>
-      <div class="muted">Pick a date above; every screen re-renders for that day from the bundled real-data snapshot.</div>
-      <div id="replayList" style="margin-top:10px"></div>
+      <h2>Authority &amp; routing</h2>
+      <div class="kv"><span class="k">Assigned authority</span><span class="v" id="authorityName">—</span></div>
+      <div class="kv"><span class="k">Decision rule</span><span class="v" id="authorityRule">—</span></div>
+      <div class="kv"><span class="k">Confidence</span><span class="v" id="authorityConfidence">—</span></div>
+      <div class="kv"><span class="k">Evidence</span><span class="v" id="authorityEvidence">—</span></div>
+    </div>
+    <div class="card">
+      <h2>Confidence &amp; inputs</h2>
+      <div class="kv"><span class="k">River turbidity NDTI (p50)</span><span class="v"><span id="ndti">—</span> <span class="pill b-mod">modelled</span></span></div>
+      <div class="kv"><span class="k">Water temperature (est.)</span><span class="v"><span id="temp">—</span> °C <span class="pill b-mod">modelled</span></span></div>
+      <div class="kv"><span class="k">Chlorine demand (est.)</span><span class="v"><span id="demand">—</span> mg/L <span class="pill b-syn">assumed</span></span></div>
+      <div class="kv"><span class="k">Active alerts</span><span class="v" id="alerts">—</span></div>
     </div>
   </section>
 
-  <!-- MY AREA -->
-  <section id="area" class="hidden">
+  <!-- RESIDENT -->
+  <section id="resident" class="hidden">
     <div class="card">
-      <h2>My area <span class="pill b-obs">public observed · CPCB</span></h2>
+      <h2>Around your area <span class="pill b-obs">public observed · CPCB</span></h2>
       <div class="muted" id="areaLoc"></div>
       <div class="why" id="areaSummary" style="margin-top:10px"></div>
+
+      <div class="row" style="margin-top:12px">
+        <div class="card" style="flex:1;min-width:260px">
+          <h2>What to do now</h2>
+          <ul class="compact-list" id="residentNow"></ul>
+        </div>
+        <div class="card" style="flex:1;min-width:260px">
+          <h2>Trusted alternatives</h2>
+          <div class="alt-grid" id="residentAlternatives"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Who to contact for your PIN area</h2>
+        <div id="contactList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Public data limits</h2>
+        <div class="banner verify" id="areaCaveat"></div>
+      </div>
+
       <div id="areaStations" style="margin-top:10px"></div>
-      <div class="banner verify" id="areaCaveat" style="margin-top:12px"></div>
     </div>
   </section>
 </div>
@@ -178,45 +232,130 @@
     document.getElementById('temp').textContent = fmt(b.water_temp_c,1);
     document.getElementById('demand').textContent = fmt(b.chlorine_demand_mg_l,2);
     document.getElementById('alerts').textContent = b.active_alerts;
+
+    var state = b.risk === 'high' ? 'verify_requested' : b.risk === 'elevated' ? 'watch' : 'sample_collected';
+    var stateBadge = document.getElementById('stateBadge');
+    stateBadge.textContent = state.replace('_',' ');
+    stateBadge.className = 'state-badge ' + state;
+    document.getElementById('stateText').textContent = state === 'verify_requested' ? 'Suspicion raised; authority review required.' : state === 'watch' ? 'Monitoring and checking for drift.' : 'Sample collected; awaiting confirmation.';
+    document.getElementById('owner').textContent = 'Campus WTP chemist + hostel estates';
+    document.getElementById('trigger').textContent = 'Low p10 residual at '+b.worst_tap.id + ' / modelled risk band';
+    document.getElementById('stateMeta').textContent = state === 'verify_requested' ? 'verify_requested → sample_collected' : 'watch → verify_requested';
+
+    var actionList = document.getElementById('actions');
+    actionList.innerHTML = '';
+    var actions = state === 'verify_requested' ? [
+      {title:'Verify field residual', text:'Run a DPD check at '+b.worst_tap.id+' and confirm whether the drop is real.'},
+      {title:'Isolate the weak tank', text:'Reduce residence time and keep the tank off the critical feed path until confirmation.'},
+      {title:'Escalate for authority review', text:'Route the case to the dummy authority queue with the evidence packet.'},
+      {title:'Run backup supply logic', text:'Prepare storage / alternative supply plan for the end-of-network hostels.'}
+    ] : [
+      {title:'Continue monitoring', text:'Watch upstream and tank residuals for the next 24–48 hours.'},
+      {title:'Check chlorine dose drift', text:'Review tuning assumptions and demand changes before increasing the dose.'},
+      {title:'Prepare verification sample', text:'If the signal persists, collect evidence from the worst tap.'}
+    ];
+    actions.forEach(function(a){
+      var li=document.createElement('li');
+      li.innerHTML='<strong>'+a.title+'</strong><span>'+a.text+'</span>';
+      actionList.appendChild(li);
+    });
+
+    var household = [
+      {name:'Verified campus storage tap', status:'verified', detail:'Recently verified source · ranked first'},
+      {name:'Public water point (location only)', status:'untested', detail:'Untested, lower trust · location only'},
+      {name:'Registered tanker', status:'demo', detail:'Demo backup option · labelled synthetic'}
+    ];
+    var campus = [
+      {name:'Pause intake and run on storage', status:'verified', detail:'Best when storage covers the raw-water spike'},
+      {name:'Isolate H12 / end-of-network tank', status:'demo', detail:'Protect the weakest segment first'},
+      {name:'Emergency supply plan', status:'untested', detail:'Temporary support while verification proceeds'}
+    ];
+    renderAlternatives('householdAlternatives', household);
+    renderAlternatives('campusAlternatives', campus);
+
+    document.getElementById('authorityName').textContent = 'Campus WTP chemist / dummy authority route';
+    document.getElementById('authorityRule').textContent = 'geofence → campus → district → state + PIN fallback';
+    document.getElementById('authorityConfidence').textContent = 'High for campus geofence; lower if boundary edges are crossed';
+    document.getElementById('authorityEvidence').textContent = 'Residual breach at ' + b.worst_tap.id + ' + risk band + NDTI signal';
+
     var vb=document.getElementById('verifyBanner');
-    if(b.risk==='high'){vb.innerHTML='<div class="banner verify">Under verification — model raises a suspicion at '+b.worst_tap.id+'. Not declared unsafe; an authority must confirm.</div>';}
+    if(b.risk==='high'){vb.innerHTML='<div class="banner verify">Under verification — model raises a suspicion at '+b.worst_tap.id+'. Not declared unsafe; an authority must confirm.</div>';} 
     else{vb.innerHTML='';}
   }
 
-  function renderNetwork(b){
-    var host=document.getElementById('nodes'); host.innerHTML='';
-    b.network.forEach(function(n){
-      var p10 = n.p10;
-      var pct = p10===null?100:Math.max(4,Math.min(100, (p10/0.6)*100));
-      var color = n.status==='ok'?'var(--ok)':n.status==='marginal'?'var(--marg)':n.status==='low'?'var(--low)':n.status==='source'?'var(--src)':'var(--mut)';
-      var val = n.id==='wtp'?'source':(fmt(p10,3)+' mg/L p10');
-      var pop = n.population?(' · '+n.population+' ppl'):'';
-      var div=document.createElement('div'); div.className='node';
-      div.innerHTML='<i class="dot '+n.status+'"></i><span class="nm">'+n.id+'</span>'+
-        '<span class="bar"><span class="fill" style="width:'+pct+'%;background:'+color+'"></span></span>'+
-        '<span class="val">'+val+pop+'</span>';
-      host.appendChild(div);
+  function renderAlternatives(id, items){
+    var host = document.getElementById(id);
+    host.innerHTML='';
+    items.forEach(function(item){
+      var card = document.createElement('div');
+      card.className = 'alt-box';
+      card.innerHTML = '<div class="name">'+item.name+'</div><div class="muted">'+item.detail+'</div><span class="tag '+item.status+'">'+(item.status==='verified'?'verified':item.status==='untested'?'untested':'demo')+'</span>';
+      host.appendChild(card);
     });
   }
 
-  function renderReplay(){
-    var host=document.getElementById('replayList'); host.innerHTML='';
-    S.dates.forEach(function(d){
-      var b=S.briefings[d];
-      var div=document.createElement('div'); div.className='node';
-      div.style.cursor='pointer';
-      div.innerHTML='<i class="dot '+(b.risk==='high'?'low':b.risk==='elevated'?'marginal':'ok')+'"></i>'+
-        '<span class="nm">'+d+'</span><span class="bar"></span>'+
-        '<span class="val">'+b.risk+' · '+fmt(b.recommended_dose_mg_l,2)+' mg/L</span>';
-      div.onclick=function(){dateSel.value=d;update();showTab('today');};
+  function renderNetwork(b){
+    var host=document.getElementById('nodes');
+    if(!host){ return; }
+    host.innerHTML='';
+    (b.network||[]).forEach(function(node){
+      var color = node.status==='source' ? 'source' : node.status==='ok' ? 'ok' : node.status==='marginal' ? 'marginal' : 'low';
+      var width = node.status==='source' ? 100 : Math.max(18, Math.min(100, ((node.p10!==null&&node.p10!==undefined ? node.p10 : 0.2) / 2.0) * 100));
+      var value = node.status==='source' ? 'source' : (node.p10===null||node.p10===undefined ? '—' : fmt(node.p10,3)+' mg/L');
+      var div=document.createElement('div');
+      div.className='node';
+      div.innerHTML='<i class="dot '+color+'"></i>'+
+        '<span class="nm">'+node.id+'</span>'+
+        '<div class="bar"><div class="fill" style="width:'+width+'%;background:'+((color==='ok')? 'var(--ok)' : (color==='marginal') ? 'var(--marg)' : (color==='low') ? 'var(--low)' : 'var(--src)')+';"></div></div>'+
+        '<span class="val">'+value+'</span>';
       host.appendChild(div);
     });
   }
 
   function renderArea(){
     var c=S.consumer;
-    document.getElementById('areaLoc').textContent=c.location;
-    document.getElementById('areaSummary').textContent=c.summary;
+    var pinArea = 'PIN 781039 · Guwahati urban zone';
+    document.getElementById('areaLoc').textContent = c.location + ' · ' + pinArea;
+    document.getElementById('areaSummary').textContent = c.summary + ' For a household, this means the public sample is a check on the wider area, not a guarantee about your tap.';
+
+    var now = document.getElementById('residentNow');
+    now.innerHTML = '';
+    var actions = [
+      {title:'Do not rely on this water for drinking or cooking', text:'If your own tap is under suspicion, use bottled or otherwise verified water until a fresh field test is completed.'},
+      {title:'Do not boil if chemical contamination is suspected', text:'Boiling can concentrate some contaminants and does not fix chemical pollution; use an alternative source instead.'},
+      {title:'Report the issue to the local utility / district desk', text:'Use the contact list below for your PIN area and share the exact location and time of the issue.'},
+      {title:'Ask for a fresh sample test', text:'A field residual or DPD test is the only reliable check for a household tap.'}
+    ];
+    actions.forEach(function(item){
+      var li=document.createElement('li');
+      li.innerHTML='<strong>'+item.title+'</strong><span>'+item.text+'</span>';
+      now.appendChild(li);
+    });
+
+    var altData = [
+      {name:'Verified bottled / sealed water', status:'verified', detail:'Preferred short-term option for drinking and cooking'},
+      {name:'Municipal supply water from verified standpipe', status:'untested', detail:'Use only if a fresh test or public notice confirms it is reliable'},
+      {name:'Registered tanker with traceable source', status:'demo', detail:'Only if the tanker source is documented and recent'},
+      {name:'Home RO / filtered supply', status:'demo', detail:'Safer than untreated tap water, but still verify maintenance'}
+    ];
+    renderAlternatives('residentAlternatives', altData);
+
+    var contacts = [
+      {name:'Demo — City Water Utility', detail:'Urban supply issue · quality@cityutility.demo.invalid · check for local outage or contamination notice'},
+      {name:'Demo — Rural Water Supply Division', detail:'Rural / community line · use the district route for your pin or ward'},
+      {name:'Demo — District Disease Surveillance', detail:'If complaints are clustered or people are falling ill · surveillance-{district_slug}@health.demo.invalid'},
+      {name:'Demo — State Water Quality Desk', detail:'Fallback route when the local match is unclear · desk@statewater.demo.invalid'},
+      {name:'Demo — Pollution Control Regional Office', detail:'For upstream river or industrial discharge concerns · ro-{reach_slug}@pollution.demo.invalid'}
+    ];
+    var contactsHost = document.getElementById('contactList');
+    contactsHost.innerHTML='';
+    contacts.forEach(function(contact){
+      var div=document.createElement('div');
+      div.className='kv';
+      div.innerHTML='<span class="k">'+contact.name+'</span><span class="v" style="max-width:52%;white-space:normal;">'+contact.detail+'</span>';
+      contactsHost.appendChild(div);
+    });
+
     var host=document.getElementById('areaStations'); host.innerHTML='';
     c.stations.forEach(function(s){
       var ex = s.exceedances&&s.exceedances.length?(' · ⚠ '+s.exceedances.length+' BIS exceedance(s)'):' · no BIS exceedances';
@@ -225,17 +364,19 @@
         '<span class="v">'+ex+'</span>';
       host.appendChild(div);
     });
-    document.getElementById('areaCaveat').textContent=c.what_this_cannot_tell_you;
+    document.getElementById('areaCaveat').textContent = c.what_this_cannot_tell_you + ' Public monitoring is not a household tap result. If your own tap is suspect, test the exact source and ask for a fresh sample before deciding the safe alternative.';
   }
 
   function update(){
     var b=S.briefings[dateSel.value];
-    renderToday(b); renderNetwork(b);
+    renderToday(b);
+    renderNetwork(b);
+    renderArea();
   }
   dateSel.onchange=update;
 
   function showTab(t){
-    ['today','network','replay','area'].forEach(function(id){
+    ['campus','resident'].forEach(function(id){
       document.getElementById(id).classList.toggle('hidden', id!==t);
     });
     Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(el){
@@ -252,7 +393,7 @@
     pc.modelled.toLocaleString()+'</b> modelled · <b>'+pc.synthetic.toLocaleString()+
     '</b> synthetic. '+S.disclaimer+' Snapshot '+ (S.generated_at||'').slice(0,10)+'.';
 
-  renderReplay(); renderArea(); update(); showTab('today');
+  update(); showTab('campus');
 })();
 </script>
 </body>
